@@ -14,6 +14,13 @@
 		24983F2526DCBD9600ACCAEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24983F2426DCBD9600ACCAEC /* Assets.xcassets */; };
 		24983F2826DCBD9600ACCAEC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24983F2726DCBD9600ACCAEC /* Preview Assets.xcassets */; };
 		24983F2B26DCBD9600ACCAEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24983F2926DCBD9600ACCAEC /* LaunchScreen.storyboard */; };
+		24983F3326DD184A00ACCAEC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24983F3226DD184A00ACCAEC /* SettingsView.swift */; };
+		24983F3526DD479F00ACCAEC /* LensesManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24983F3426DD479F00ACCAEC /* LensesManagementView.swift */; };
+		24983F3726DD487F00ACCAEC /* OperationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24983F3626DD487F00ACCAEC /* OperationsView.swift */; };
+		24983F3D26DE661F00ACCAEC /* Lenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24983F3C26DE661F00ACCAEC /* Lenses.swift */; };
+		24983F3F26DE871A00ACCAEC /* database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24983F3E26DE871A00ACCAEC /* database.swift */; };
+		24983F4126DE884600ACCAEC /* lensetracker.db in Resources */ = {isa = PBXBuildFile; fileRef = 24983F4026DE884600ACCAEC /* lensetracker.db */; };
+		DEE12C7F2B18848FA7BD5382 /* Pods_LenseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EBBB2A99E3DD1D8A7F471E3 /* Pods_LenseTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,15 @@
 		24983F2726DCBD9600ACCAEC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		24983F2A26DCBD9600ACCAEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24983F2C26DCBD9600ACCAEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24983F3226DD184A00ACCAEC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		24983F3426DD479F00ACCAEC /* LensesManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensesManagementView.swift; sourceTree = "<group>"; };
+		24983F3626DD487F00ACCAEC /* OperationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsView.swift; sourceTree = "<group>"; };
+		24983F3C26DE661F00ACCAEC /* Lenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lenses.swift; sourceTree = "<group>"; };
+		24983F3E26DE871A00ACCAEC /* database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = database.swift; sourceTree = "<group>"; };
+		24983F4026DE884600ACCAEC /* lensetracker.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = lensetracker.db; sourceTree = "<group>"; };
+		4EBBB2A99E3DD1D8A7F471E3 /* Pods_LenseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LenseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70CF977B1AC662321B28BCF2 /* Pods-LenseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LenseTracker.release.xcconfig"; path = "Target Support Files/Pods-LenseTracker/Pods-LenseTracker.release.xcconfig"; sourceTree = "<group>"; };
+		956A22557183E8976E87EEF1 /* Pods-LenseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LenseTracker.debug.xcconfig"; path = "Target Support Files/Pods-LenseTracker/Pods-LenseTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +49,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEE12C7F2B18848FA7BD5382 /* Pods_LenseTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		209E35EA0888B6DDD5F8D752 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4EBBB2A99E3DD1D8A7F471E3 /* Pods_LenseTracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		24983F0F26DCBD9600ACCAEC = {
 			isa = PBXGroup;
 			children = (
 				24983F1A26DCBD9600ACCAEC /* LenseTracker */,
 				24983F1926DCBD9600ACCAEC /* Products */,
+				78FC706C57E8F9FD89B46CFE /* Pods */,
+				209E35EA0888B6DDD5F8D752 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +85,14 @@
 		24983F1A26DCBD9600ACCAEC /* LenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				24983F3A26DE64D200ACCAEC /* Views */,
 				24983F1B26DCBD9600ACCAEC /* AppDelegate.swift */,
 				24983F1D26DCBD9600ACCAEC /* SceneDelegate.swift */,
-				24983F1F26DCBD9600ACCAEC /* ContentView.swift */,
 				24983F2426DCBD9600ACCAEC /* Assets.xcassets */,
 				24983F2926DCBD9600ACCAEC /* LaunchScreen.storyboard */,
 				24983F2C26DCBD9600ACCAEC /* Info.plist */,
 				24983F2126DCBD9600ACCAEC /* LenseTracker.xcdatamodeld */,
+				24983F4026DE884600ACCAEC /* lensetracker.db */,
 				24983F2626DCBD9600ACCAEC /* Preview Content */,
 			);
 			path = LenseTracker;
@@ -78,6 +106,37 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		24983F3A26DE64D200ACCAEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				24983F1F26DCBD9600ACCAEC /* ContentView.swift */,
+				24983F3626DD487F00ACCAEC /* OperationsView.swift */,
+				24983F3426DD479F00ACCAEC /* LensesManagementView.swift */,
+				24983F3226DD184A00ACCAEC /* SettingsView.swift */,
+				24983F3B26DE65FC00ACCAEC /* Models */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		24983F3B26DE65FC00ACCAEC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				24983F3E26DE871A00ACCAEC /* database.swift */,
+				24983F3C26DE661F00ACCAEC /* Lenses.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		78FC706C57E8F9FD89B46CFE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				956A22557183E8976E87EEF1 /* Pods-LenseTracker.debug.xcconfig */,
+				70CF977B1AC662321B28BCF2 /* Pods-LenseTracker.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -85,9 +144,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24983F2F26DCBD9600ACCAEC /* Build configuration list for PBXNativeTarget "LenseTracker" */;
 			buildPhases = (
+				C1E860F8617DB9DF23931D60 /* [CP] Check Pods Manifest.lock */,
 				24983F1426DCBD9600ACCAEC /* Sources */,
 				24983F1526DCBD9600ACCAEC /* Frameworks */,
 				24983F1626DCBD9600ACCAEC /* Resources */,
+				69F2EB7DC71A294F978F56E9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -137,20 +198,68 @@
 			files = (
 				24983F2B26DCBD9600ACCAEC /* LaunchScreen.storyboard in Resources */,
 				24983F2826DCBD9600ACCAEC /* Preview Assets.xcassets in Resources */,
+				24983F4126DE884600ACCAEC /* lensetracker.db in Resources */,
 				24983F2526DCBD9600ACCAEC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		69F2EB7DC71A294F978F56E9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LenseTracker/Pods-LenseTracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LenseTracker/Pods-LenseTracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LenseTracker/Pods-LenseTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1E860F8617DB9DF23931D60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LenseTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		24983F1426DCBD9600ACCAEC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24983F3326DD184A00ACCAEC /* SettingsView.swift in Sources */,
+				24983F3D26DE661F00ACCAEC /* Lenses.swift in Sources */,
+				24983F3526DD479F00ACCAEC /* LensesManagementView.swift in Sources */,
 				24983F2326DCBD9600ACCAEC /* LenseTracker.xcdatamodeld in Sources */,
 				24983F1C26DCBD9600ACCAEC /* AppDelegate.swift in Sources */,
+				24983F3F26DE871A00ACCAEC /* database.swift in Sources */,
 				24983F1E26DCBD9600ACCAEC /* SceneDelegate.swift in Sources */,
+				24983F3726DD487F00ACCAEC /* OperationsView.swift in Sources */,
 				24983F2026DCBD9600ACCAEC /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +396,7 @@
 		};
 		24983F3026DCBD9600ACCAEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 956A22557183E8976E87EEF1 /* Pods-LenseTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -308,6 +418,7 @@
 		};
 		24983F3126DCBD9600ACCAEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70CF977B1AC662321B28BCF2 /* Pods-LenseTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
