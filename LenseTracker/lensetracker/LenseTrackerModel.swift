@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct LenseTrackerModel {
+struct LenseTrackerModel: Codable {
 
         private(set) var opticalForce: Double = -2 //default
         private(set) var validPeriod: Int = 14 //default
         private(set) var areMyLensesOn: Bool = false //default - not on
         private(set) var firstDateLensesOn: Date? //optional, nll if we never used it
         private(set) var lastDateLensesOn: Date? //optional, nll if we never used it
-        
+        private var alreadyUsedToday: Bool = false
+    
         private(set) var daysUsed: Int = 0 //default - not used
         
         var daysLeft: Int {
@@ -26,7 +27,7 @@ struct LenseTrackerModel {
             else {return false}
         }
     
-    private var alreadyUsedToday: Bool = false
+
     
     mutating func putOn() {
         if !areMyLensesOn {
@@ -37,7 +38,7 @@ struct LenseTrackerModel {
                 }
             }
                 self.lastDateLensesOn = Date()
-                print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
+                //print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
         }
     }
     
@@ -52,14 +53,14 @@ struct LenseTrackerModel {
                     //if it is > 1 day passed - adding # of days passed to daysUsed
                     if d > 0 {
                         self.daysUsed = daysUsed + d
-                        print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
+                        //print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
                     }
                     //else if it is less then 1 day - adding 1 full day, if not during 1 day
                     else {
                         if !alreadyUsedToday
                         {
                             self.daysUsed = daysUsed + 1
-                            print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
+                            //print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
                         }
                     }
                 }
@@ -75,7 +76,7 @@ struct LenseTrackerModel {
         self.firstDateLensesOn = nil
         self.lastDateLensesOn = Date()
         self.daysUsed = 0
-        print(self)
+        //print(self)
     }
     
 }
