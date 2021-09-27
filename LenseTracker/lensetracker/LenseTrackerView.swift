@@ -65,6 +65,18 @@ struct LenseTrackerView: View {
                     .padding(.vertical)
                     .background(Color.blue)
                     .cornerRadius(parameters.buttonRadius)
+                    
+                    Button(action: {
+                        self.selection = "Details"
+                    }) {
+                        Text("Состояние линз")
+                        .foregroundColor(.white)
+                        .font(.title)
+                    }
+                    .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding(.vertical)
+                    .background(Color.blue)
+                    .cornerRadius(parameters.buttonRadius)
                 }
                 Spacer()
                 Text("(с) 2021 Andrey Lesnykh")
@@ -72,6 +84,7 @@ struct LenseTrackerView: View {
                     .font(.footnote)
                     .padding()
                 NavigationLink(destination: SetupLensesView(opticalForce: "", validPeriod: "") ,tag: "Setup", selection: $selection) { EmptyView() }
+                NavigationLink(destination: LensesDetails() ,tag: "Details", selection: $selection) { EmptyView() }
             }
             
         }
