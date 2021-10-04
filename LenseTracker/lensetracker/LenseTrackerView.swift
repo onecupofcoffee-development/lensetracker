@@ -83,7 +83,7 @@ struct LenseTrackerView: View {
                     .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     .font(.footnote)
                     .padding()
-                NavigationLink(destination: SetupLensesView(opticalForce: "", validPeriod: "") ,tag: "Setup", selection: $selection) { EmptyView() }
+                NavigationLink(destination: SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "") ,tag: "Setup", selection: $selection) { EmptyView() }
                 NavigationLink(destination: LensesDetails() ,tag: "Details", selection: $selection) { EmptyView() }
             }
             

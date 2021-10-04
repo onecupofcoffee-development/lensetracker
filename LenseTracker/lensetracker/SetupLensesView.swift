@@ -11,45 +11,97 @@ struct SetupLensesView: View {
     @EnvironmentObject var myViewModel: LenseTrackerViewModel
     @Environment(\.presentationMode) var presentation
     
-    @State var opticalForce: String
-    @State var validPeriod: String
+    @State var lenseVendor: String
+    @State var lenseModel: String
+    @State var opticalForce: String = "-2"
+    @State var validPeriod: String = "14"
+    
+    let forceOptions = [
+        "-10",
+        "-9",
+        "-8",
+        "-7",
+        "-6",
+        "-5",
+        "-4",
+        "-3",
+        "-2",
+        "-1",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+    ]
+    
+    let validOptions = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14"
+    ]
     
     var body: some View {
         VStack {
             Form {
-                
                 Section(header: Text("Параметры линз")) {
-                Section(header: Text("Оптическая сила линз")) {
-                    TextField("-2", text: $opticalForce)
                     
-                }
-                Section(header: Text("Сколько дней можно носить")) {
-                    TextField("14", text: $validPeriod)
-                }
+                    Section(header: Text("Производитель")) {
+                        TextField("Bausch&Lomb", text: $lenseVendor)
+                    }
+                    Section(header: Text("Модель")) {
+                        TextField("One vision", text: $lenseModel)
+                    }
+                    Picker("Оптическая сила линз", selection: $opticalForce) {
+                        ForEach(forceOptions, id:  \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Сколько дней можно носить", selection: $validPeriod) {
+                        ForEach(validOptions, id:  \.self) {
+                            Text($0)
+                        }
+                    }
                 
                     Section {
                         Button(action: {
-                            if let f = Double(opticalForce) {
-                                if let v = Int(validPeriod) {
-                                    myViewModel.createNewLenses(f, v)
-                                    self.presentation.wrappedValue.dismiss()
-                                    }
-                                }
+                            let f = Double(opticalForce) ?? -2
+                            let v = Int(validPeriod) ?? 14
+                            let vendor = lenseVendor ?? "Bausch&Lomb"
+                            let model = lenseModel ?? "One Vision"
+                            
+                            myViewModel.createNewLenses(vendor, model, f, v)
+                            self.presentation.wrappedValue.dismiss()
                             }
                         )
                             {
                                 Text("Сохранить и надеть")
                             }
                     }
+                }
             }
         }
     }
 }
-}
 
 struct SetupLensesView_Previews: PreviewProvider {
     static var previews: some View {
-        SetupLensesView(opticalForce: "", validPeriod: "")
+        SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "")
             .environmentObject(LenseTrackerViewModel())
     }
 }

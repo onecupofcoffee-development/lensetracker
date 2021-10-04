@@ -39,7 +39,6 @@ class LenseTrackerViewModel : ObservableObject {
         let hour = calendar.component(.hour, from: Date())
         let minutes = calendar.component(.minute, from: Date())
         let interval = reminderTime*60*60-(hour*60+minutes)*60
-        print("seconds left to notify: \(interval)")
         content.title = "Вы не забыли снять линзы?"
         content.subtitle = "Для точного учета срока годности линзы, нажмите 'Снять линзы' в приложении LenseTracker"
         content.sound = UNNotificationSound.default
@@ -48,7 +47,7 @@ class LenseTrackerViewModel : ObservableObject {
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error) in
             if error != nil {
-               print("shit happened")
+                print("Reminder was not set due to error: \(String(describing: error))")
             }
          }
     }
@@ -60,7 +59,7 @@ class LenseTrackerViewModel : ObservableObject {
         center.getNotificationSettings
         { settings in
              if settings.authorizationStatus == .notDetermined {
-                        print("notification auth is not set")
+                        print("Notification permission is not set!")
                         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
                             {
                                 success, error in
@@ -77,6 +76,10 @@ class LenseTrackerViewModel : ObservableObject {
     
     //MARK: Intents
     
+    func setOptions() {
+        
+    }
+    
     func PutLensesOn() {
         myModel.putOn()
         setLenseReminder(time: 22)
@@ -88,8 +91,8 @@ class LenseTrackerViewModel : ObservableObject {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
-    func createNewLenses(_ force: Double, _ valid: Int) {
-        myModel.createNew(force: force, valid: valid)
+    func createNewLenses(_ vendor: String, _ model: String, _ force: Double, _ valid: Int) {
+        myModel.createNew(vendor: vendor, model: model, force: force, valid: valid)
         myModel.putOn()
         setLenseReminder(time: 22)
     }

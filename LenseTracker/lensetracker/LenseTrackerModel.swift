@@ -9,12 +9,20 @@ import Foundation
 
 struct LenseTrackerModel: Codable {
 
+    //Lense properties
         private(set) var opticalForce: Double = -2 //default
         private(set) var validPeriod: Int = 14 //default
         private(set) var areMyLensesOn: Bool = false //default - not on
         private(set) var firstDateLensesOn: Date? //optional, nll if we never used it
         private(set) var lastDateLensesOn: Date? //optional, nll if we never used it
         private var alreadyUsedToday: Bool = false
+        private (set) var lenseVendor: String = ""
+        private (set) var lenseModel: String = ""
+        
+    //options
+        private var dailyReminders: Bool = true
+        private var exceedUsageReminder: Bool = false
+        private var reminderTime: Int = 22
     
         private(set) var daysUsed: Int = 0 //default - not used
         
@@ -28,6 +36,9 @@ struct LenseTrackerModel: Codable {
         }
     
 
+    mutating func setOptions() {
+        
+    }
     
     mutating func putOn() {
         if !areMyLensesOn {
@@ -67,15 +78,16 @@ struct LenseTrackerModel: Codable {
         }
     }
     
-    mutating func createNew(force: Double, valid: Int) {
+    mutating func createNew(vendor: String, model: String, force: Double, valid: Int) {
         //re-init lenses
+        self.lenseVendor = vendor
+        self.lenseModel = model
         self.opticalForce = force
         self.validPeriod = valid
         self.areMyLensesOn = false
         self.firstDateLensesOn = Date()
         self.lastDateLensesOn = nil
         self.daysUsed = 1
-        //print(self)
     }
     
 }

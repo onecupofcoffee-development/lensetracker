@@ -20,18 +20,39 @@ struct LensesDetails: View {
                 VStack {
                 Divider()
                 HStack {
-                Text("Оптическая сила линз")
-                        .padding(20)
-                        .font(.headline)
-                        .foregroundColor(.blue)
-                Text(String(myViewModel.myModel.opticalForce))
-                        .font(.title2)
-                        .foregroundColor(.blue)
+                    Text("Производитель")
+                            .padding(0)
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                    Text(String(myViewModel.myModel.lenseVendor))
+                            .font(.title2)
+                            .foregroundColor(.blue)
+                    }
+                Divider()
+                HStack {
+                    Text("Модель")
+                            .padding(0)
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                    Text(String(myViewModel.myModel.lenseModel))
+                            .font(.title2)
+                            .foregroundColor(.blue)
+                    }
+                Divider()
+                HStack {
+                    Text("Оптическая сила линз")
+                            .padding(0)
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                    Text(String(myViewModel.myModel.opticalForce))
+                            .font(.title2)
+                            .foregroundColor(.blue)
                 }
+                    
                 Divider()
                 HStack {
                     Text("Сколько дней я уже ношу линзы")
-                        .padding(20)
+                        .padding(0)
                         .font(.headline)
                         .foregroundColor(.blue)
                     Text(String(myViewModel.myModel.daysUsed))
@@ -41,14 +62,13 @@ struct LensesDetails: View {
                 Divider()
                 HStack {
                     Text("Сколько дней осталось")
-                        .padding(20)
+                        .padding(0)
                         .font(.headline)
                         .foregroundColor(.blue)
                 Text(String(myViewModel.myModel.daysLeft))
                         .font(.title2)
                         .foregroundColor(.blue)
                 }
-                    Divider()
                 }
                 .zIndex(2)
             }
