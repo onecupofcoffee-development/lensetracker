@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B934B27010EE30092F9A1 /* LenseImageView.swift */; };
+		24D2790827023D2A00A813EB /* LensesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2790727023D2A00A813EB /* LensesDetails.swift */; };
 		24DB203A26EFD32D006BA70A /* lensetrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB203926EFD32D006BA70A /* lensetrackerApp.swift */; };
 		24DB203C26EFD32D006BA70A /* LenseTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB203B26EFD32D006BA70A /* LenseTrackerView.swift */; };
 		24DB203E26EFD32E006BA70A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DB203D26EFD32E006BA70A /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		241B934B27010EE30092F9A1 /* LenseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenseImageView.swift; sourceTree = "<group>"; };
+		24D2790727023D2A00A813EB /* LensesDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensesDetails.swift; sourceTree = "<group>"; };
 		24DB203626EFD32D006BA70A /* lensetracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lensetracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24DB203926EFD32D006BA70A /* lensetrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lensetrackerApp.swift; sourceTree = "<group>"; };
 		24DB203B26EFD32D006BA70A /* LenseTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenseTrackerView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				24DB203B26EFD32D006BA70A /* LenseTrackerView.swift */,
 				241B934B27010EE30092F9A1 /* LenseImageView.swift */,
 				24DB204C26F90413006BA70A /* SetupLensesView.swift */,
+				24D2790727023D2A00A813EB /* LensesDetails.swift */,
 				24DB203D26EFD32E006BA70A /* Assets.xcassets */,
 				24DB204226EFD32E006BA70A /* Info.plist */,
 				24DB203F26EFD32E006BA70A /* Preview Content */,
@@ -152,6 +155,7 @@
 			files = (
 				24DB203C26EFD32D006BA70A /* LenseTrackerView.swift in Sources */,
 				24DB204B26F25DFC006BA70A /* LenseTrackerViewModel.swift in Sources */,
+				24D2790827023D2A00A813EB /* LensesDetails.swift in Sources */,
 				24DB204926F25A1C006BA70A /* LenseTrackerModel.swift in Sources */,
 				24DB204D26F90413006BA70A /* SetupLensesView.swift in Sources */,
 				241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */,
@@ -293,6 +297,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = onecupofcoffee.lensetracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -315,6 +320,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = onecupofcoffee.lensetracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
