@@ -53,7 +53,6 @@ struct LenseTrackerModel: Codable {
                     //if it is > 1 day passed - adding # of days passed to daysUsed
                     if d > 0 {
                         self.daysUsed = daysUsed + d
-                        //print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
                     }
                     //else if it is less then 1 day - adding 1 full day, if not during 1 day
                     else {
@@ -72,10 +71,10 @@ struct LenseTrackerModel: Codable {
         //re-init lenses
         self.opticalForce = force
         self.validPeriod = valid
-        self.areMyLensesOn = true
-        self.firstDateLensesOn = nil
-        self.lastDateLensesOn = Date()
-        self.daysUsed = 0
+        self.areMyLensesOn = false
+        self.firstDateLensesOn = Date()
+        self.lastDateLensesOn = nil
+        self.daysUsed = 1
         //print(self)
     }
     

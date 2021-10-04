@@ -12,6 +12,7 @@ import UserNotifications
 class LenseTrackerViewModel : ObservableObject {
     @Published var myModel: LenseTrackerModel {
         didSet {
+            debugPrint("Model has changed: \(myModel)")
             let encoder = JSONEncoder()
             if let encodedData = try? encoder.encode(myModel) {
                     UserDefaults.standard.set(encodedData, forKey: "LenseData")
@@ -89,6 +90,7 @@ class LenseTrackerViewModel : ObservableObject {
 
     func createNewLenses(_ force: Double, _ valid: Int) {
         myModel.createNew(force: force, valid: valid)
+        myModel.putOn()
         setLenseReminder(time: 22)
     }
     
