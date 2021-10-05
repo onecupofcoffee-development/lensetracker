@@ -105,15 +105,9 @@ class LenseTrackerViewModel : ObservableObject {
     
     func getReminderTimeInDateFormat(rTime: Int) -> Date {
             
-        //get current date (dd-MM-yyyy 00 am as date)
-        //get offset in seconds of 0:00 - which is reminder time
-        //init new date with timeinterval from first one plus offset
-        //return it
         let date = Date()
         let startOfDay = date.startOfDay
         let convertedTime = Date(timeInterval: TimeInterval(rTime), since: startOfDay)
-        
-        print("reminder time is \(convertedTime), offset is \(rTime)")
         
         return convertedTime
     }

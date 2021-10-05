@@ -67,12 +67,12 @@ struct SetupLensesView: View {
                     Section(header: Text("Модель")) {
                         TextField(myViewModel.myModel.lenseModel, text: $lenseModel)
                     }
-                    Picker("Оптическая сила линз", selection: $opticalForce) {
+                    Picker("Оптическая сила линз: "+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
                         ForEach(forceOptions, id:  \.self) {
                             Text($0)
                         }
                     }
-                    Picker("Сколько дней можно носить", selection: $validPeriod) {
+                    Picker("Сколько дней можно носить: "+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
                         ForEach(validOptions, id:  \.self) {
                             Text($0)
                         }
