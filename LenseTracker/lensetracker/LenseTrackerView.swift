@@ -15,44 +15,22 @@ struct LenseTrackerView: View {
     var body: some View {
         NavigationView {
             VStack {
-                VStack {
                     if myViewModel.getMyLensesState() {
                         lenseImage(ison: true, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed))
+                            .onTapGesture {
+                            myViewModel.takeLensesOff()
+                        }
                     }
                     else {
-                        let l = Double(myViewModel.myModel.validPeriod)
-                        let u = Double(myViewModel.myModel.daysUsed)
-                        lenseImage(ison: false, limit: l, utilization: u)
+                        lenseImage(ison: false, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed))
+                            .onTapGesture {
+                                myViewModel.PutLensesOn()
+                            }
                     }
-                    
                     Spacer()
                     Divider()
-                }
-                    
+
                 VStack {
-                    Button(action: {
-                        myViewModel.takeLensesOff()
-                    }) {
-                        Text("Снять линзы")
-                            .foregroundColor(.white)
-                            .font(.title)
-                    }
-                    .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .padding(.vertical)
-                    .background(Color.blue)
-                    .cornerRadius(parameters.buttonRadius)
-                    
-                    Button(action: {
-                        myViewModel.PutLensesOn()
-                    }) {
-                        Text("Надеть линзы")
-                            .foregroundColor(.white)
-                            .font(.title)
-                    }
-                    .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .padding(.vertical)
-                    .background(Color.blue)
-                    .cornerRadius(parameters.buttonRadius)
                     
                     Button(action: {
                         self.selection = "Setup"
@@ -77,14 +55,28 @@ struct LenseTrackerView: View {
                     .padding(.vertical)
                     .background(Color.blue)
                     .cornerRadius(parameters.buttonRadius)
+                    
+                    Button(action: {
+                        self.selection = "Settings"
+                    }) {
+                        Text("Настройки")
+                        .foregroundColor(.white)
+                        .font(.title)
+                    }
+                    .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .padding(.vertical)
+                    .background(Color.blue)
+                    .cornerRadius(parameters.buttonRadius)
                 }
-                Spacer()
                 Text("(с) 2021 Andrey Lesnykh")
                     .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     .font(.footnote)
-                    .padding()
+                    .padding(50)
+                Spacer()
+                
                 NavigationLink(destination: SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "") ,tag: "Setup", selection: $selection) { EmptyView() }
                 NavigationLink(destination: LensesDetails() ,tag: "Details", selection: $selection) { EmptyView() }
+                NavigationLink(destination: AppSettingsView() ,tag: "Settings", selection: $selection) { EmptyView() }
             }
             
         }

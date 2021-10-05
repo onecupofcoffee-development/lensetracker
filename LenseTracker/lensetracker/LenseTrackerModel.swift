@@ -20,9 +20,10 @@ struct LenseTrackerModel: Codable {
         private (set) var lenseModel: String = ""
         
     //options
-        private var dailyReminders: Bool = true
-        private var exceedUsageReminder: Bool = false
-        private var reminderTime: Int = 22
+        private(set) var dailyReminders: Bool = true
+        private(set) var exceedUsageReminder: Bool = false
+        private(set) var dailyReminderTime: Int = 22*60*60 //minutes from 00:00 to 22-00 by default
+        private(set) var expirationReminderTime: Int = 18*60*60 //minutes from 00:00 18-00 by default
     
         private(set) var daysUsed: Int = 0 //default - not used
         
@@ -36,7 +37,9 @@ struct LenseTrackerModel: Codable {
         }
     
 
-    mutating func setOptions() {
+    mutating func setOptions(dailyReminder: Bool, expirationReminder: Bool, dReminder: Int, eReminder: Int) {
+        self.dailyReminders = dailyReminder
+        self.exceedUsageReminder = expirationReminder
         
     }
     
@@ -48,8 +51,7 @@ struct LenseTrackerModel: Codable {
                     alreadyUsedToday = true
                 }
             }
-                self.lastDateLensesOn = Date()
-                //print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
+        self.lastDateLensesOn = Date()
         }
     }
     
@@ -65,12 +67,11 @@ struct LenseTrackerModel: Codable {
                     if d > 0 {
                         self.daysUsed = daysUsed + d
                     }
-                    //else if it is less then 1 day - adding 1 full day, if not during 1 day
+                    //else if it is less then 1 day - adding 1 full day
                     else {
                         if !alreadyUsedToday
                         {
                             self.daysUsed = daysUsed + 1
-                            //print("Lenses on is \(self.areMyLensesOn), last on date is \(lastDateLensesOn), valid \(validPeriod), days used \(daysUsed), days left \(daysLeft)")
                         }
                     }
                 }
@@ -86,7 +87,7 @@ struct LenseTrackerModel: Codable {
         self.validPeriod = valid
         self.areMyLensesOn = false
         self.firstDateLensesOn = Date()
-        self.lastDateLensesOn = nil
+        self.lastDateLensesOn = Date()
         self.daysUsed = 1
     }
     
@@ -103,5 +104,22 @@ extension Date {
         let components = calendar.dateComponents([.day], from: date1, to: date2)
         return components.day  // This will return the number of day(s) between dates
     }
+}
+
+extension Date {
+
+            var startOfDay : Date {
+                let calendar = Calendar.current
+                let unitFlags = Set<Calendar.Component>([.year, .month, .day])
+                let components = calendar.dateComponents(unitFlags, from: self)
+                return calendar.date(from: components)!
+           }
+
+            var endOfDay : Date {
+                var components = DateComponents()
+                components.day = 1
+                let date = Calendar.current.date(byAdding: components, to: self.startOfDay)
+                return (date?.addingTimeInterval(-1))!
+            }
 }
 

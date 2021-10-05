@@ -62,10 +62,10 @@ struct SetupLensesView: View {
                 Section(header: Text("Параметры линз")) {
                     
                     Section(header: Text("Производитель")) {
-                        TextField("Bausch&Lomb", text: $lenseVendor)
+                        TextField(myViewModel.myModel.lenseVendor, text: $lenseVendor)
                     }
                     Section(header: Text("Модель")) {
-                        TextField("One vision", text: $lenseModel)
+                        TextField(myViewModel.myModel.lenseModel, text: $lenseModel)
                     }
                     Picker("Оптическая сила линз", selection: $opticalForce) {
                         ForEach(forceOptions, id:  \.self) {
@@ -82,8 +82,8 @@ struct SetupLensesView: View {
                         Button(action: {
                             let f = Double(opticalForce) ?? -2
                             let v = Int(validPeriod) ?? 14
-                            let vendor = lenseVendor ?? "Bausch&Lomb"
-                            let model = lenseModel ?? "One Vision"
+                            let vendor = lenseVendor //?? "Pure Vision"
+                            let model = lenseModel //?? "Oasys"
                             
                             myViewModel.createNewLenses(vendor, model, f, v)
                             self.presentation.wrappedValue.dismiss()
