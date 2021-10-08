@@ -2,7 +2,7 @@
 //  LenseTrackerViewModel.swift
 //  lensetracker
 //
-//  Created by Мак on 15.09.2021.
+//  Created by Andrey Lesnykh on 15.09.2021.
 //
 
 import SwiftUI
@@ -10,6 +10,7 @@ import CoreData
 import UserNotifications
 
 class LenseTrackerViewModel : ObservableObject {
+    
     @Published private(set) var myModel: LenseTrackerModel {
         didSet {
             debugPrint("Model has changed: \(myModel)")

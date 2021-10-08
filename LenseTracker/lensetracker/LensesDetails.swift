@@ -2,7 +2,7 @@
 //  LensesDetails.swift
 //  lensetracker
 //
-//  Created by Мак on 27.09.2021.
+//  Created by Andrey Lesnykh on 27.09.2021.
 //
 
 import SwiftUI

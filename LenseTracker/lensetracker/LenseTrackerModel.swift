@@ -2,7 +2,7 @@
 //  LenseTrackerModel.swift
 //  lensetracker
 //
-//  Created by Мак on 15.09.2021.
+//  Created by Andrey Lesnykh on 15.09.2021.
 //
 
 import Foundation
@@ -13,9 +13,9 @@ struct LenseTrackerModel: Codable {
         private(set) var opticalForce: Double = -2 //default
         private(set) var validPeriod: Int = 14 //default
         private(set) var areMyLensesOn: Bool = false //default - not on
-        private(set) var firstDateLensesOn: Date? //optional, nll if we never used it
+        private(set) var lastDateLensesOff: Date? //optional, nll if we never used it
         private(set) var lastDateLensesOn: Date? //optional, nll if we never used it
-        private var alreadyUsedToday: Bool = false
+        //private var firstTimeUsedToday: Bool = true
         private (set) var lenseVendor: String = ""
         private (set) var lenseModel: String = ""
         
@@ -25,7 +25,7 @@ struct LenseTrackerModel: Codable {
         private(set) var dailyReminderTime: Int = 22*60*60 //minutes from 00:00 to 22-00 by default
         private(set) var expirationReminderTime: Int = 18*60*60 //minutes from 00:00 18-00 by default
     
-        private(set) var daysUsed: Int = 0 //default - not used
+        private(set) var daysUsed: Int = 0 //default - not used yet
         
         var daysLeft: Int {
                 return validPeriod - daysUsed
@@ -46,36 +46,44 @@ struct LenseTrackerModel: Codable {
     mutating func putOn() {
         if !areMyLensesOn {
             self.areMyLensesOn = true
-            if let d = lastDateLensesOn?.daysTo(Date()) {
-                if d == 0 {
-                    alreadyUsedToday = true
-                }
-            }
-        self.lastDateLensesOn = Date()
+            self.lastDateLensesOn = Date()
         }
     }
     
     mutating func takeOff() {
         if areMyLensesOn {
-            self.areMyLensesOn = false
-            //if we ever used lenses, e.g. last use date is not nil
-            if let u = lastDateLensesOn {
-                //full days passed btw now and the date/time I put it on
-                if let d = u.daysTo(Date())
-                {
-                    //if it is > 1 day passed - adding # of days passed to daysUsed
-                    if d > 0 {
-                        self.daysUsed = daysUsed + d
+            areMyLensesOn = false
+         
+            if let lastDayOffDelta = self.lastDateLensesOff?.daysTo(Date()) {
+                //already used - not nil
+                if lastDayOffDelta > 0 {
+                    //already used, last time used is yesterday or more
+                    if lastDateLensesOn!.daysTo(Date()) == 0 {
+                        //last time I put my lenses on is today - decreasing daysLeft to 1 day
+                        daysUsed = self.daysUsed + 1
+                        lastDateLensesOff = Date()
                     }
-                    //else if it is less then 1 day - adding 1 full day
                     else {
-                        if !alreadyUsedToday
-                        {
-                            self.daysUsed = daysUsed + 1
-                        }
+                        //last time I put my lenses on is yesterday or before - decreasing daysLeft to the amount of days passed
+                        daysUsed = daysUsed + lastDateLensesOn!.daysTo(Date())! + 1
+                        lastDateLensesOff = Date()
                     }
                 }
             }
+            else {
+                //never take off - nil
+                if lastDateLensesOn!.daysTo(Date()) == 0 {
+                    //last time I put my lenses on is today - decreasing daysLeft to 1 day
+                    daysUsed = self.daysUsed + 1
+                    lastDateLensesOff = Date()
+                }
+                else {
+                    //last time I put my lenses on is yesterday or before - decreasing daysLeft to the amount of days passed
+                    daysUsed = daysUsed + lastDateLensesOn!.daysTo(Date())! + 1
+                    lastDateLensesOff = Date()
+                }
+            }
+            
         }
     }
     
@@ -86,9 +94,9 @@ struct LenseTrackerModel: Codable {
         self.opticalForce = force
         self.validPeriod = valid
         self.areMyLensesOn = false
-        self.firstDateLensesOn = Date()
-        self.lastDateLensesOn = Date()
-        self.daysUsed = 1
+        self.lastDateLensesOff = nil
+        self.lastDateLensesOn = nil
+        self.daysUsed = 0
     }
     
 }

@@ -2,7 +2,7 @@
 //  AppSettingsView.swift
 //  lensetracker
 //
-//  Created by Мак on 04.10.2021.
+//  Created by Andrey Lesnykh on 04.10.2021.
 //
 
 import SwiftUI

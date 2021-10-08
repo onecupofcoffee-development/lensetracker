@@ -2,7 +2,7 @@
 //  LenseTrackerView.swift
 //  lensetracker
 //
-//  Created by Мак on 13.09.2021.
+//  Created by Andrey Lesnykh on 13.09.2021.
 //
 
 import SwiftUI
@@ -33,6 +33,7 @@ struct LenseTrackerView: View {
                 VStack {
                     
                     Button(action: {
+                        myViewModel.takeLensesOff()
                         self.selection = "Setup"
                     }) {
                         Text("Сменить линзы")
