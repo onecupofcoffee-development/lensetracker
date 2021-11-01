@@ -16,10 +16,10 @@ struct LenseTrackerView: View {
         NavigationView {
             VStack {
                     if myViewModel.getMyLensesState() {
-                        lenseImage(ison: true, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed))
+                            lenseImage(ison: true, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed))
                             .onTapGesture {
-                            myViewModel.takeLensesOff()
-                        }
+                                myViewModel.takeLensesOff()
+                            }
                     }
                     else {
                         lenseImage(ison: false, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed))
