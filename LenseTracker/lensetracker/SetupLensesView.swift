@@ -13,8 +13,8 @@ struct SetupLensesView: View {
     
     @State var lenseVendor: String
     @State var lenseModel: String
-    @State var opticalForce: String = "-2"
-    @State var validPeriod: String = "14"
+    @State var opticalForce: String
+    @State var validPeriod: String
     
     let forceOptions = [
         "-10",
@@ -63,9 +63,11 @@ struct SetupLensesView: View {
                     
                     Section(header: Text("Производитель")) {
                         TextField(myViewModel.myModel.lenseVendor, text: $lenseVendor)
+                            .font(.footnote)
                     }
                     Section(header: Text("Модель")) {
                         TextField(myViewModel.myModel.lenseModel, text: $lenseModel)
+                            .font(.footnote)
                     }
                     Picker("Оптическая сила линз: "+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
                         ForEach(forceOptions, id:  \.self) {
