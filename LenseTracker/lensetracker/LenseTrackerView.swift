@@ -75,12 +75,15 @@ struct LenseTrackerView: View {
                     .padding(50)
                 Spacer()
                 
-                NavigationLink(destination: SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "") ,tag: "Setup", selection: $selection) { EmptyView() }
+                NavigationLink(destination: SetupLensesView(lenseVendor: myViewModel.myModel.lenseVendor, lenseModel: myViewModel.myModel.lenseModel, opticalForce: String(myViewModel.myModel.opticalForce), validPeriod: String( myViewModel.myModel.validPeriod)) ,tag: "Setup", selection: $selection)
+                    { EmptyView() }
                 NavigationLink(destination: LensesDetails() ,tag: "Details", selection: $selection) { EmptyView() }
-                NavigationLink(destination: AppSettingsView() ,tag: "Settings", selection: $selection) { EmptyView() }
+                NavigationLink(destination: AppSettingsView(dailyReminder: myViewModel.myModel.dailyReminders, expirationReminder: myViewModel.myModel.exceedUsageReminder, intDReminderime: myViewModel.myModel.dailyReminderTime, intEReminderime: myViewModel.myModel.expirationReminderTime) ,tag: "Settings", selection: $selection) { EmptyView() }
             }
             
         }
+        .navigationViewStyle(.stack)
+        .padding()
     }
 }
 

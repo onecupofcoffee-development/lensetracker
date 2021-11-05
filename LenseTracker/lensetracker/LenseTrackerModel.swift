@@ -16,8 +16,8 @@ struct LenseTrackerModel: Codable {
         private(set) var lastDateLensesOff: Date? //optional, nll if we never used it
         private(set) var lastDateLensesOn: Date? //optional, nll if we never used it
         //private var firstTimeUsedToday: Bool = true
-        private (set) var lenseVendor: String = ""
-        private (set) var lenseModel: String = ""
+        private (set) var lenseVendor: String = "<Производитель>"
+        private (set) var lenseModel: String = "<Обычные линзы>"
         
     //options
         private(set) var dailyReminders: Bool = true
@@ -32,15 +32,16 @@ struct LenseTrackerModel: Codable {
         }
     
         var isExpired: Bool {
-            if validPeriod < daysUsed {return true}
+            if validPeriod <= daysUsed {return true}
             else {return false}
         }
     
 
     mutating func setOptions(dailyReminder: Bool, expirationReminder: Bool, dReminder: Int, eReminder: Int) {
         self.dailyReminders = dailyReminder
+        self.dailyReminderTime = dReminder
         self.exceedUsageReminder = expirationReminder
-        
+        self.expirationReminderTime = eReminder
     }
     
     mutating func putOn() {

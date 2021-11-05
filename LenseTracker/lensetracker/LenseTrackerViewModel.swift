@@ -34,12 +34,23 @@ class LenseTrackerViewModel : ObservableObject {
     
     private func throwNotification(reminderTime: Int, title: String, subtitle: String) {
         let content = UNMutableNotificationContent()
+        var interval: Int
         //calculating reminder time from now to pre-set value
 
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: Date())
         let minutes = calendar.component(.minute, from: Date())
-        let interval = reminderTime-(hour*60+minutes)*60
+        
+        let delta = (hour*60+minutes)*60
+        
+        if reminderTime < delta
+        {
+            interval = reminderTime + (24*60*60 - delta)
+        }
+        else {
+            interval = reminderTime - delta
+        }
+        
         content.title = title
         content.subtitle = subtitle
         content.sound = UNNotificationSound.default
@@ -69,11 +80,11 @@ class LenseTrackerViewModel : ObservableObject {
                                                 case 0: //daily
                                                         let title = "Вы не забыли снять линзы?"
                                                         let subtitle = "Для точного учета срока годности линзы, нажмите 'Снять линзы' в приложении LenseTracker"
-                                            self.throwNotification(reminderTime: self.myModel.dailyReminderTime, title: title, subtitle: subtitle)
+                                                        self.throwNotification(reminderTime: self.myModel.dailyReminderTime, title: title, subtitle: subtitle)
                                                 case 1: //expiration
                                                         let title = "Не забудьте заменить линзы"
                                                         let subtitle = "Ваши линзы нужно заменить на новые - не забудьте сделать это в приложении LenseTracker!"
-                                            self.throwNotification(reminderTime: self.myModel.expirationReminderTime, title: title, subtitle: subtitle)
+                                                        self.throwNotification(reminderTime: self.myModel.expirationReminderTime, title: title, subtitle: subtitle)
                                                 default: break
                                                 }
                                     }
@@ -95,12 +106,12 @@ class LenseTrackerViewModel : ObservableObject {
         }
     }
     
-    private func calcReminderTime(dateValue: Date) -> Int {
+    func calcReminderTime(dateValue: Date) -> Int {
         //calc minutes from date value to now and return int of minutes to set up reminder
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: dateValue)
         let minutes = calendar.component(.minute, from: dateValue)
-        let interval = hour*60+minutes
+        let interval = (hour*60+minutes)*60
         return interval
     }
     
@@ -115,16 +126,19 @@ class LenseTrackerViewModel : ObservableObject {
     
     //MARK: Intents
     
-    func setOptions(dailyReminder: Bool, expirationReminder: Bool, dailyReminderTime: Date, expirationReminderTime: Date) {
-        myModel.setOptions(dailyReminder: dailyReminder, expirationReminder: expirationReminder, dReminder: calcReminderTime(dateValue: dailyReminderTime), eReminder: calcReminderTime(dateValue: expirationReminderTime))
+    func setOptions(dailyReminder: Bool, expirationReminder: Bool, dailyReminderTime: Int, expirationReminderTime: Int) {
+        myModel.setOptions(dailyReminder: dailyReminder, expirationReminder: expirationReminder, dReminder: dailyReminderTime, eReminder: expirationReminderTime)
     }
     
     func PutLensesOn() {
         myModel.putOn()
+        print("lenses are on, managing reminders. ExceededUsageReminder is \(myModel.exceedUsageReminder), isExpired is \(myModel.isExpired)")
         if myModel.dailyReminders {
+            print("setting up daily reminder")
             setReminder(time: myModel.dailyReminderTime, type: 0)
         }
         if myModel.exceedUsageReminder && myModel.isExpired {
+            print("setting up expiration reminder")
             setReminder(time: myModel.expirationReminderTime, type: 1)
         }
     }
@@ -139,9 +153,11 @@ class LenseTrackerViewModel : ObservableObject {
         myModel.createNew(vendor: vendor, model: model, force: force, valid: valid)
         myModel.putOn()
         if myModel.dailyReminders {
+            print("setting up daily reminder")
             setReminder(time: myModel.dailyReminderTime, type: 0)
         }
-        if myModel.exceedUsageReminder {
+        if myModel.exceedUsageReminder && myModel.isExpired {
+            print("setting up expiration reminder")
             setReminder(time: myModel.expirationReminderTime, type: 1)
         }
     }

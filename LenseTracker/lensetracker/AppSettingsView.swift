@@ -11,17 +11,26 @@ struct AppSettingsView: View {
     @EnvironmentObject var myViewModel: LenseTrackerViewModel
     @Environment(\.presentationMode) var presentation
     
-    @State private var dailyReminder = true
-    @State private var expirationReminder = true
-    //@State
+    @State var dailyReminder: Bool
+    @State var expirationReminder: Bool
+    
+   @State var intDReminderime: Int
+   @State var intEReminderime: Int
+    
     private var dailyReminderTime: Binding<Date> {
         Binding(
-            get: { myViewModel.getReminderTimeInDateFormat(rTime: myViewModel.myModel.dailyReminderTime) }, set: { _ in }
+            get: { myViewModel.getReminderTimeInDateFormat(rTime: myViewModel.myModel.dailyReminderTime) },
+            set: { dailyReminderTime in
+                intDReminderime = myViewModel.calcReminderTime(dateValue: dailyReminderTime)
+            }
         )
     }
     private var expirationReminderTime: Binding<Date> {
         Binding(
-            get: { myViewModel.getReminderTimeInDateFormat(rTime: myViewModel.myModel.expirationReminderTime) }, set: { _ in }
+            get: { myViewModel.getReminderTimeInDateFormat(rTime: myViewModel.myModel.expirationReminderTime) },
+            set: { expirationReminderTime in
+                intEReminderime = myViewModel.calcReminderTime(dateValue: expirationReminderTime)
+            }
         )
     }
     
@@ -32,7 +41,6 @@ struct AppSettingsView: View {
                     Toggle("Напоминать снять линзы каждый день", isOn: $dailyReminder)
                     DatePicker("Время напоминания", selection: dailyReminderTime, displayedComponents: .hourAndMinute)
                 }
-                //replace with some valid selection tool instead of text input
                 Section(header: Text("Замена линз")) {
                     Toggle("Напоминать о скорой замене линз", isOn: $expirationReminder)
                     DatePicker("Время напоминания", selection: expirationReminderTime, displayedComponents: .hourAndMinute)
@@ -40,7 +48,7 @@ struct AppSettingsView: View {
                     
                 Section {
                     Button(action: {
-                        myViewModel.setOptions(dailyReminder: dailyReminder, expirationReminder: expirationReminder, dailyReminderTime: dailyReminderTime.wrappedValue, expirationReminderTime: expirationReminderTime.wrappedValue)
+                        myViewModel.setOptions(dailyReminder: dailyReminder, expirationReminder: expirationReminder, dailyReminderTime: intDReminderime, expirationReminderTime: intEReminderime)
                         self.presentation.wrappedValue.dismiss()
                         }
                     )
@@ -55,7 +63,7 @@ struct AppSettingsView: View {
 
 struct AppSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        AppSettingsView()
+        AppSettingsView(dailyReminder: true, expirationReminder: true, intDReminderime: 600, intEReminderime: 1200)
             .environmentObject(LenseTrackerViewModel())
     }
 }
