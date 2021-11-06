@@ -33,6 +33,7 @@ struct AppSettingsView: View {
             }
         )
     }
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     
     var body: some View {
         VStack {
@@ -57,6 +58,10 @@ struct AppSettingsView: View {
                         }
                 }
             }
+            Spacer()
+
+            Text("Версия приложения: "+(appVersion ?? "Информация о версии недоступна"))
+                .font(.footnote)
         }
     }
 }
