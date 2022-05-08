@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2403760F282803F600014ACD /* lensetrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403760E282803F600014ACD /* lensetrackerTests.swift */; };
 		241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B934B27010EE30092F9A1 /* LenseImageView.swift */; };
+		2462B6FC28284C1E005BB1E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2462B6FB28284C1E005BB1E9 /* Localizable.strings */; };
 		248AB05A270B369000C379EE /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248AB059270B369000C379EE /* AppSettingsView.swift */; };
 		24D2790827023D2A00A813EB /* LensesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2790727023D2A00A813EB /* LensesDetails.swift */; };
 		24DB203A26EFD32D006BA70A /* lensetrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB203926EFD32D006BA70A /* lensetrackerApp.swift */; };
@@ -19,8 +21,21 @@
 		24DB204D26F90413006BA70A /* SetupLensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB204C26F90413006BA70A /* SetupLensesView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		24037610282803F600014ACD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24DB202E26EFD32D006BA70A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24DB203526EFD32D006BA70A;
+			remoteInfo = lensetracker;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2403760C282803F600014ACD /* lensetrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lensetrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2403760E282803F600014ACD /* lensetrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lensetrackerTests.swift; sourceTree = "<group>"; };
 		241B934B27010EE30092F9A1 /* LenseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenseImageView.swift; sourceTree = "<group>"; };
+		2462B6FB28284C1E005BB1E9 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		248AB059270B369000C379EE /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		24D2790727023D2A00A813EB /* LensesDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensesDetails.swift; sourceTree = "<group>"; };
 		24DB203626EFD32D006BA70A /* lensetracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lensetracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,6 +50,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		24037609282803F600014ACD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24DB203326EFD32D006BA70A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,10 +67,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2403760D282803F600014ACD /* lensetrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2403760E282803F600014ACD /* lensetrackerTests.swift */,
+			);
+			path = lensetrackerTests;
+			sourceTree = "<group>";
+		};
+		2462B6FD28284C28005BB1E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24DB204826F25A1C006BA70A /* LenseTrackerModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2462B6FF28284C3A005BB1E9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				24DB204A26F25DFC006BA70A /* LenseTrackerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2462B70028284C44005BB1E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				24DB203B26EFD32D006BA70A /* LenseTrackerView.swift */,
+				241B934B27010EE30092F9A1 /* LenseImageView.swift */,
+				24DB204C26F90413006BA70A /* SetupLensesView.swift */,
+				248AB059270B369000C379EE /* AppSettingsView.swift */,
+				24D2790727023D2A00A813EB /* LensesDetails.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		24DB202D26EFD32D006BA70A = {
 			isa = PBXGroup;
 			children = (
 				24DB203826EFD32D006BA70A /* lensetracker */,
+				2403760D282803F600014ACD /* lensetrackerTests */,
 				24DB203726EFD32D006BA70A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				24DB203626EFD32D006BA70A /* lensetracker.app */,
+				2403760C282803F600014ACD /* lensetrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,14 +124,11 @@
 		24DB203826EFD32D006BA70A /* lensetracker */ = {
 			isa = PBXGroup;
 			children = (
+				2462B6FD28284C28005BB1E9 /* Model */,
+				2462B70028284C44005BB1E9 /* View */,
+				2462B6FF28284C3A005BB1E9 /* ViewModel */,
 				24DB203926EFD32D006BA70A /* lensetrackerApp.swift */,
-				24DB204826F25A1C006BA70A /* LenseTrackerModel.swift */,
-				24DB204A26F25DFC006BA70A /* LenseTrackerViewModel.swift */,
-				24DB203B26EFD32D006BA70A /* LenseTrackerView.swift */,
-				241B934B27010EE30092F9A1 /* LenseImageView.swift */,
-				24DB204C26F90413006BA70A /* SetupLensesView.swift */,
-				248AB059270B369000C379EE /* AppSettingsView.swift */,
-				24D2790727023D2A00A813EB /* LensesDetails.swift */,
+				2462B6FB28284C1E005BB1E9 /* Localizable.strings */,
 				24DB203D26EFD32E006BA70A /* Assets.xcassets */,
 				24DB204226EFD32E006BA70A /* Info.plist */,
 				24DB203F26EFD32E006BA70A /* Preview Content */,
@@ -90,6 +147,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2403760B282803F600014ACD /* lensetrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24037614282803F600014ACD /* Build configuration list for PBXNativeTarget "lensetrackerTests" */;
+			buildPhases = (
+				24037608282803F600014ACD /* Sources */,
+				24037609282803F600014ACD /* Frameworks */,
+				2403760A282803F600014ACD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				24037611282803F600014ACD /* PBXTargetDependency */,
+			);
+			name = lensetrackerTests;
+			productName = lensetrackerTests;
+			productReference = 2403760C282803F600014ACD /* lensetrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		24DB203526EFD32D006BA70A /* lensetracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24DB204526EFD32E006BA70A /* Build configuration list for PBXNativeTarget "lensetracker" */;
@@ -113,9 +188,13 @@
 		24DB202E26EFD32D006BA70A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					2403760B282803F600014ACD = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 24DB203526EFD32D006BA70A;
+					};
 					24DB203526EFD32D006BA70A = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -135,16 +214,25 @@
 			projectRoot = "";
 			targets = (
 				24DB203526EFD32D006BA70A /* lensetracker */,
+				2403760B282803F600014ACD /* lensetrackerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2403760A282803F600014ACD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24DB203426EFD32D006BA70A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				24DB204126EFD32E006BA70A /* Preview Assets.xcassets in Resources */,
+				2462B6FC28284C1E005BB1E9 /* Localizable.strings in Resources */,
 				24DB203E26EFD32E006BA70A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +240,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		24037608282803F600014ACD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2403760F282803F600014ACD /* lensetrackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24DB203226EFD32D006BA70A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -169,7 +265,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		24037611282803F600014ACD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24DB203526EFD32D006BA70A /* lensetracker */;
+			targetProxy = 24037610282803F600014ACD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		24037612282803F600014ACD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BN7A8CTNT5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = onecupofcoffee.lensetrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lensetracker.app/lensetracker";
+			};
+			name = Debug;
+		};
+		24037613282803F600014ACD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BN7A8CTNT5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = onecupofcoffee.lensetrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lensetracker.app/lensetracker";
+			};
+			name = Release;
+		};
 		24DB204326EFD32E006BA70A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -337,6 +483,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		24037614282803F600014ACD /* Build configuration list for PBXNativeTarget "lensetrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24037612282803F600014ACD /* Debug */,
+				24037613282803F600014ACD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		24DB203126EFD32D006BA70A /* Build configuration list for PBXProject "lensetracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
