@@ -16,8 +16,8 @@ struct LenseTrackerModel: Codable {
         private(set) var lastDateLensesOff: Date? //optional, nll if we never used it
         private(set) var lastDateLensesOn: Date? //optional, nll if we never used it
         //private var firstTimeUsedToday: Bool = true
-        private (set) var lenseVendor: String = "<Производитель>"
-        private (set) var lenseModel: String = "<Обычные линзы>"
+        private (set) var lenseVendor: String = NSLocalizedString("<Производитель>", comment: "Lense supplier (data model)")
+        private (set) var lenseModel: String = NSLocalizedString("<Обычные линзы>", comment: "Lense model (data model)")
         
     //options
         private(set) var dailyReminders: Bool = true

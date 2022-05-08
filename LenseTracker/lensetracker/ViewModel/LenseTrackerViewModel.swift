@@ -78,12 +78,12 @@ class LenseTrackerViewModel : ObservableObject {
                                     if success {
                                         switch type {
                                                 case 0: //daily
-                                                        let title = "Вы не забыли отметить, что сняли линзы?"
-                                                        let subtitle = "Для точного учета срока годности линзы не забудьте 'Снять линзы' в приложении LenseTracker"
+                                                        let title = NSLocalizedString("Вы не забыли отметить, что сняли линзы?", comment: "daily reminder text caption (view model)")
+                                                        let subtitle = NSLocalizedString("Для точного учета срока годности линзы не забудьте 'Снять линзы' в приложении LenseTracker", comment: "daily reminder text content (view model)")
                                                         self.throwNotification(reminderTime: self.myModel.dailyReminderTime, title: title, subtitle: subtitle)
                                                 case 1: //expiration
-                                                        let title = "Пора заменить линзы!"
-                                                        let subtitle = "У линз истек срок годности - необходимо надеть новые. Не забудьте 'Cоздать новые линзы' в приложении LenseTracker, когда сделаете это!"
+                                                        let title = NSLocalizedString("Пора заменить линзы!", comment: "expiration reminder caption (view model)")
+                                                        let subtitle = NSLocalizedString("У линз истек срок годности - необходимо надеть новые. Не забудьте 'Сменить линзы' в приложении LenseTracker, когда сделаете это!", comment: "expiration reminder content (view model)")
                                                         self.throwNotification(reminderTime: self.myModel.expirationReminderTime, title: title, subtitle: subtitle)
                                                 default: break
                                                 }
@@ -93,12 +93,12 @@ class LenseTrackerViewModel : ObservableObject {
              } else {
                  switch type {
                          case 0: //daily
-                                 let title = "Вы не забыли отметить, что сняли линзы?"
-                                 let subtitle = "Для точного учета срока годности линзы не забудьте 'Снять линзы' в приложении LenseTracker"
+                                 let title = NSLocalizedString("Вы не забыли отметить, что сняли линзы?", comment: "daily reminder text caption (view model)")
+                                 let subtitle = NSLocalizedString("Для точного учета срока годности линзы не забудьте 'Снять линзы' в приложении LenseTracker", comment: "daily reminder text content (view model)")
                      self.throwNotification(reminderTime: self.myModel.dailyReminderTime, title: title, subtitle: subtitle)
                          case 1: //expiration
-                                 let title = "Пора заменить линзы!"
-                                 let subtitle = "У линз истек срок годности - необходимо надеть новые. Не забудьте 'Cоздать новые линзы' в приложении LenseTracker, когда сделаете это!"
+                                 let title = NSLocalizedString("Пора заменить линзы!", comment: "expiration reminder caption (view model)")
+                                 let subtitle = NSLocalizedString("У линз истек срок годности - необходимо надеть новые. Не забудьте 'Сменить линзы' в приложении LenseTracker, когда сделаете это!", comment: "expiration reminder content (view model)")
                      self.throwNotification(reminderTime: self.myModel.expirationReminderTime, title: title, subtitle: subtitle)
                          default: break
                          }

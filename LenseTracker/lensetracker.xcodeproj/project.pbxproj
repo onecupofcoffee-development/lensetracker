@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2403760F282803F600014ACD /* lensetrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403760E282803F600014ACD /* lensetrackerTests.swift */; };
 		241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B934B27010EE30092F9A1 /* LenseImageView.swift */; };
-		2462B6FC28284C1E005BB1E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2462B6FB28284C1E005BB1E9 /* Localizable.strings */; };
+		2462B70328285996005BB1E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2462B70128285996005BB1E9 /* Localizable.strings */; };
 		248AB05A270B369000C379EE /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248AB059270B369000C379EE /* AppSettingsView.swift */; };
 		24D2790827023D2A00A813EB /* LensesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2790727023D2A00A813EB /* LensesDetails.swift */; };
 		24DB203A26EFD32D006BA70A /* lensetrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB203926EFD32D006BA70A /* lensetrackerApp.swift */; };
@@ -35,7 +35,8 @@
 		2403760C282803F600014ACD /* lensetrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lensetrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2403760E282803F600014ACD /* lensetrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lensetrackerTests.swift; sourceTree = "<group>"; };
 		241B934B27010EE30092F9A1 /* LenseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenseImageView.swift; sourceTree = "<group>"; };
-		2462B6FB28284C1E005BB1E9 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		2462B70228285996005BB1E9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2462B70428285CC0005BB1E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		248AB059270B369000C379EE /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		24D2790727023D2A00A813EB /* LensesDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensesDetails.swift; sourceTree = "<group>"; };
 		24DB203626EFD32D006BA70A /* lensetracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lensetracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +129,7 @@
 				2462B70028284C44005BB1E9 /* View */,
 				2462B6FF28284C3A005BB1E9 /* ViewModel */,
 				24DB203926EFD32D006BA70A /* lensetrackerApp.swift */,
-				2462B6FB28284C1E005BB1E9 /* Localizable.strings */,
+				2462B70128285996005BB1E9 /* Localizable.strings */,
 				24DB203D26EFD32E006BA70A /* Assets.xcassets */,
 				24DB204226EFD32E006BA70A /* Info.plist */,
 				24DB203F26EFD32E006BA70A /* Preview Content */,
@@ -206,7 +207,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ru,
 			);
 			mainGroup = 24DB202D26EFD32D006BA70A;
 			productRefGroup = 24DB203726EFD32D006BA70A /* Products */;
@@ -232,7 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DB204126EFD32E006BA70A /* Preview Assets.xcassets in Resources */,
-				2462B6FC28284C1E005BB1E9 /* Localizable.strings in Resources */,
+				2462B70328285996005BB1E9 /* Localizable.strings in Resources */,
 				24DB203E26EFD32E006BA70A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +273,18 @@
 			targetProxy = 24037610282803F600014ACD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2462B70128285996005BB1E9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2462B70228285996005BB1E9 /* ru */,
+				2462B70428285CC0005BB1E9 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		24037612282803F600014ACD /* Debug */ = {

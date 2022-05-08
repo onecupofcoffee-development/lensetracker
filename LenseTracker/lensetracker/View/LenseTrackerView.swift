@@ -36,7 +36,7 @@ struct LenseTrackerView: View {
                         myViewModel.takeLensesOff()
                         self.selection = "Setup"
                     }) {
-                        Text("Сменить линзы")
+                        Text(String(format: NSLocalizedString("Сменить линзы", comment: "Change lenses (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
                     }
@@ -48,7 +48,7 @@ struct LenseTrackerView: View {
                     Button(action: {
                         self.selection = "Details"
                     }) {
-                        Text("Состояние линз")
+                        Text(String(format: NSLocalizedString("Состояние линз", comment: "Lenses condition (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
                     }
@@ -60,7 +60,7 @@ struct LenseTrackerView: View {
                     Button(action: {
                         self.selection = "Settings"
                     }) {
-                        Text("Настройки")
+                        Text(String(format: NSLocalizedString("Настройки", comment: "Settings (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
                     }
