@@ -40,10 +40,12 @@ struct AppSettingsView: View {
             Form {
                 Section(header: Text(String(format: NSLocalizedString("Ежедневные напоминания", comment: "daily reminders (app settings view)")))) {
                     Toggle(String(format: NSLocalizedString("Напоминать снять линзы каждый день", comment: "daily reminder toggle (app settings view)")), isOn: $dailyReminder)
+                        .fixedSize(horizontal: false, vertical: true)
                     DatePicker(NSLocalizedString("Время напоминания", comment: "daily reminder time picker (app settings view)"), selection: dailyReminderTime, displayedComponents: .hourAndMinute)
                 }
                 Section(header: Text(String(format: NSLocalizedString("Замена линз", comment: "expiration reminder (app settings view)")))) {
                     Toggle(String(format: NSLocalizedString("Напоминать о скорой замене линз", comment: "expiration reminder toggle (app settings view)")), isOn: $expirationReminder)
+                        .fixedSize(horizontal: false, vertical: true)
                     DatePicker(NSLocalizedString("Время напоминания", comment: "expiration reminder time picker (app settings view)"), selection: expirationReminderTime, displayedComponents: .hourAndMinute)
                 }
                     
