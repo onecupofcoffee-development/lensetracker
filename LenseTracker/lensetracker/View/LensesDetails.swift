@@ -20,7 +20,7 @@ struct LensesDetails: View {
                 VStack {
                     Divider()
                     HStack {
-                        Text("Производитель")
+                        Text(String(format: NSLocalizedString("Производитель", comment: "Vendor")))
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
@@ -30,7 +30,7 @@ struct LensesDetails: View {
                         }
                     Divider()
                     HStack {
-                        Text("Модель")
+                        Text(String(format: NSLocalizedString("Модель", comment: "Lense model")))
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
@@ -40,7 +40,7 @@ struct LensesDetails: View {
                         }
                     Divider()
                     HStack {
-                        Text("Оптическая сила линз")
+                        Text(String(format: NSLocalizedString("Оптическая сила линз", comment: "Lense optical force")))
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
@@ -51,7 +51,7 @@ struct LensesDetails: View {
                         
                     Divider()
                     HStack {
-                        Text("Сколько дней я уже ношу линзы")
+                        Text(String(format: NSLocalizedString("Сколько дней я уже ношу линзы", comment: "Days in use (lenses detail view)")))
                             .padding(0)
                             .font(.headline)
                             .foregroundColor(.blue)
@@ -61,7 +61,7 @@ struct LensesDetails: View {
                     }
                     Divider()
                     HStack {
-                        Text("Сколько дней осталось")
+                        Text(String(format: NSLocalizedString("Сколько дней осталось", comment: "Days left (lenses detail view")))
                             .padding(0)
                             .font(.headline)
                             .foregroundColor(.blue)

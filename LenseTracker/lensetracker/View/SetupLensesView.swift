@@ -18,63 +18,57 @@ struct SetupLensesView: View {
     
     let forceOptions = [
         "-10",
+        "-9.5",
         "-9",
+        "-8.5",
         "-8",
+        "-7.5",
         "-7",
+        "-6.5",
         "-6",
+        "-5.5",
         "-5",
+        "-4.5",
         "-4",
+        "-3.5",
         "-3",
+        "-2.5",
         "-2",
+        "-1.5",
         "-1",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10"
+        "-0.5"
     ]
     
     let validOptions = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "13",
-    "14"
+        "0",
+        "1",
+        "7",
+        "14",
+        "21",
+        "30",
+        "90",
+        "180"
     ]
     
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Параметры линз")) {
+                Section(header: Text(String(format: NSLocalizedString("Параметры линз", comment: "Lense parameters (setup view)")))) {
                     
-                    Section(header: Text("Производитель")) {
+                    Section(header: Text(String(format: NSLocalizedString("Производитель", comment: "Vendor")))) {
                         TextField(myViewModel.myModel.lenseVendor, text: $lenseVendor)
                             .font(.footnote)
                     }
-                    Section(header: Text("Модель")) {
+                    Section(header: Text(String(format: NSLocalizedString("Модель", comment: "Lense model")))) {
                         TextField(myViewModel.myModel.lenseModel, text: $lenseModel)
                             .font(.footnote)
                     }
-                    Picker("Оптическая сила линз: "+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
+                    Picker(NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force")+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
                         ForEach(forceOptions, id:  \.self) {
                             Text($0)
                         }
                     }
-                    Picker("Сколько дней можно носить: "+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
+                    Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
                         ForEach(validOptions, id:  \.self) {
                             Text($0)
                         }
@@ -92,7 +86,7 @@ struct SetupLensesView: View {
                             }
                         )
                             {
-                                Text("Сохранить и надеть")
+                                Text(String(format: NSLocalizedString("Сохранить и надеть", comment: "save and put on (setup view)")))
                             }
                     }
                 }

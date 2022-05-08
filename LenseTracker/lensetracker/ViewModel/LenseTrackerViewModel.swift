@@ -59,7 +59,7 @@ class LenseTrackerViewModel : ObservableObject {
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error) in
             if error != nil {
-                print("Reminder was not set due to error: \(String(describing: error))")
+                NSLog("Reminder was not set due to error: \(String(describing: error))")
             }
          }
     }
@@ -71,19 +71,19 @@ class LenseTrackerViewModel : ObservableObject {
         center.getNotificationSettings
         { settings in
              if settings.authorizationStatus == .notDetermined {
-                        print("Notification permission is not set!")
+                        NSLog("Notification permission is not set!")
                         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
                             {
                                 success, error in
                                     if success {
                                         switch type {
                                                 case 0: //daily
-                                                        let title = "Вы не забыли снять линзы?"
-                                                        let subtitle = "Для точного учета срока годности линзы, нажмите 'Снять линзы' в приложении LenseTracker"
+                                                        let title = NSLocalizedString("Вы не забыли отметить, что сняли линзы?", comment: "daily reminder text caption (view model)")
+                                                        let subtitle = NSLocalizedString("Для точного учета срока годности линзы не забудьте 'Снять линзы' в приложении LenseTracker", comment: "daily reminder text content (view model)")
                                                         self.throwNotification(reminderTime: self.myModel.dailyReminderTime, title: title, subtitle: subtitle)
                                                 case 1: //expiration
-                                                        let title = "Не забудьте заменить линзы"
-                                                        let subtitle = "Ваши линзы нужно заменить на новые - не забудьте сделать это в приложении LenseTracker!"
+                                                        let title = NSLocalizedString("Пора заменить линзы!", comment: "expiration reminder caption (view model)")
+                                                        let subtitle = NSLocalizedString("У линз истек срок годности - необходимо надеть новые. Не забудьте 'Сменить линзы' в приложении LenseTracker, когда сделаете это!", comment: "expiration reminder content (view model)")
                                                         self.throwNotification(reminderTime: self.myModel.expirationReminderTime, title: title, subtitle: subtitle)
                                                 default: break
                                                 }
@@ -93,12 +93,12 @@ class LenseTrackerViewModel : ObservableObject {
              } else {
                  switch type {
                          case 0: //daily
-                                 let title = "Вы не забыли снять линзы?"
-                                 let subtitle = "Для точного учета срока годности линзы, нажмите 'Снять линзы' в приложении LenseTracker"
+                                 let title = NSLocalizedString("Вы не забыли отметить, что сняли линзы?", comment: "daily reminder text caption (view model)")
+                                 let subtitle = NSLocalizedString("Для точного учета срока годности линзы не забудьте 'Снять линзы' в приложении LenseTracker", comment: "daily reminder text content (view model)")
                      self.throwNotification(reminderTime: self.myModel.dailyReminderTime, title: title, subtitle: subtitle)
                          case 1: //expiration
-                                 let title = "Не забудьте заменить линзы"
-                                 let subtitle = "Ваши линзы нужно заменить на новые - не забудьте сделать это в приложении LenseTracker!"
+                                 let title = NSLocalizedString("Пора заменить линзы!", comment: "expiration reminder caption (view model)")
+                                 let subtitle = NSLocalizedString("У линз истек срок годности - необходимо надеть новые. Не забудьте 'Сменить линзы' в приложении LenseTracker, когда сделаете это!", comment: "expiration reminder content (view model)")
                      self.throwNotification(reminderTime: self.myModel.expirationReminderTime, title: title, subtitle: subtitle)
                          default: break
                          }
@@ -132,13 +132,13 @@ class LenseTrackerViewModel : ObservableObject {
     
     func PutLensesOn() {
         myModel.putOn()
-        print("lenses are on, managing reminders. ExceededUsageReminder is \(myModel.exceedUsageReminder), isExpired is \(myModel.isExpired)")
+        debugPrint("lenses are on, managing reminders. ExceededUsageReminder is \(myModel.exceedUsageReminder), isExpired is \(myModel.isExpired)")
         if myModel.dailyReminders {
-            print("setting up daily reminder")
+            debugPrint("setting up daily reminder")
             setReminder(time: myModel.dailyReminderTime, type: 0)
         }
         if myModel.exceedUsageReminder && myModel.isExpired {
-            print("setting up expiration reminder")
+            debugPrint("setting up expiration reminder")
             setReminder(time: myModel.expirationReminderTime, type: 1)
         }
     }
@@ -153,11 +153,11 @@ class LenseTrackerViewModel : ObservableObject {
         myModel.createNew(vendor: vendor, model: model, force: force, valid: valid)
         myModel.putOn()
         if myModel.dailyReminders {
-            print("setting up daily reminder")
+            debugPrint("setting up daily reminder")
             setReminder(time: myModel.dailyReminderTime, type: 0)
         }
         if myModel.exceedUsageReminder && myModel.isExpired {
-            print("setting up expiration reminder")
+            debugPrint("setting up expiration reminder")
             setReminder(time: myModel.expirationReminderTime, type: 1)
         }
     }

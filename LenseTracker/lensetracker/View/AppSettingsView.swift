@@ -38,13 +38,15 @@ struct AppSettingsView: View {
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Ежедневные напоминания")) {
-                    Toggle("Напоминать снять линзы каждый день", isOn: $dailyReminder)
-                    DatePicker("Время напоминания", selection: dailyReminderTime, displayedComponents: .hourAndMinute)
+                Section(header: Text(String(format: NSLocalizedString("Ежедневные напоминания", comment: "daily reminders (app settings view)")))) {
+                    Toggle(String(format: NSLocalizedString("Напоминать снять линзы каждый день", comment: "daily reminder toggle (app settings view)")), isOn: $dailyReminder)
+                        .fixedSize(horizontal: false, vertical: true)
+                    DatePicker(NSLocalizedString("Время напоминания", comment: "daily reminder time picker (app settings view)"), selection: dailyReminderTime, displayedComponents: .hourAndMinute)
                 }
-                Section(header: Text("Замена линз")) {
-                    Toggle("Напоминать о скорой замене линз", isOn: $expirationReminder)
-                    DatePicker("Время напоминания", selection: expirationReminderTime, displayedComponents: .hourAndMinute)
+                Section(header: Text(String(format: NSLocalizedString("Замена линз", comment: "expiration reminder (app settings view)")))) {
+                    Toggle(String(format: NSLocalizedString("Напоминать о скорой замене линз", comment: "expiration reminder toggle (app settings view)")), isOn: $expirationReminder)
+                        .fixedSize(horizontal: false, vertical: true)
+                    DatePicker(NSLocalizedString("Время напоминания", comment: "expiration reminder time picker (app settings view)"), selection: expirationReminderTime, displayedComponents: .hourAndMinute)
                 }
                     
                 Section {
@@ -54,13 +56,13 @@ struct AppSettingsView: View {
                         }
                     )
                         {
-                            Text("Сохранить и закрыть")
+                            Text(String(format: NSLocalizedString("Сохранить и закрыть", comment: "save and close button (app settings view)")))
                         }
                 }
             }
             Spacer()
 
-            Text("Версия приложения: "+(appVersion ?? "Информация о версии недоступна"))
+            Text(String(format: NSLocalizedString("Версия приложения: ", comment: "app version info (app settings view)"))+(appVersion ?? String(format: NSLocalizedString("Информация о версии недоступна", comment: "app version info not available (app settings view"))))
                 .font(.footnote)
         }
     }

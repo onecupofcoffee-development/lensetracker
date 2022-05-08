@@ -22,9 +22,29 @@ struct lenseImage: View {
             }
     }
     
+    func getFillColor() -> Color {
+        
+        if ison {
+            if utilization >= limit {
+                return Color.red
+            }
+            else {
+                return Color.green
+            }
+        }
+        else {
+            if utilization >= limit {
+                return Color.red
+            }
+            else {
+                return Color.gray
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
-            if limit == utilization {
+            if utilization >= limit {
                 ProgressView("Состояние линзы: ", value: 1, total: 1)
                     .progressViewStyle(GaugeProgressStyle(strokeColor: Color.red))
                         .frame(width: 280, height: 280)
@@ -40,34 +60,26 @@ struct lenseImage: View {
                     .foregroundColor(.white)
                 .zIndex(1)}
             else {
-                ProgressView("Состояние линзы: ", value: limit-utilization, total: limit)
-                .progressViewStyle(GaugeProgressStyle(strokeColor: getGaugeColor()))
-                        .frame(width: 280, height: 280)
-                        .contentShape(Rectangle())
-                    .zIndex(3)
-                Image("lense")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .zIndex(2)
-                Circle()
-                    .frame(width: 250, height: 250, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(.white)
-                .zIndex(1)}
-            if ison {
-                Circle()
-                    .frame(width: 270, height: 270, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .foregroundColor(.green)
-                    .zIndex(4)
-                    .opacity(0.3)
+                    ProgressView("Состояние линзы: ", value: limit-utilization, total: limit)
+                    .progressViewStyle(GaugeProgressStyle(strokeColor: getGaugeColor()))
+                            .frame(width: 280, height: 280)
+                            .contentShape(Rectangle())
+                        .zIndex(3)
+                    Image("lense")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .zIndex(2)
+                    Circle()
+                        .frame(width: 250, height: 250, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.white)
+                    .zIndex(1)
             }
-            else {
-                Circle()
-                    .frame(width: 270, height: 270, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .foregroundColor(.gray)
-                    .zIndex(4)
-                    .opacity(0.3)
-            }
+            Circle()
+                .frame(width: 270, height: 270, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .foregroundColor(getFillColor())
+                .zIndex(4)
+                .opacity(0.3)
         }//z-stack
     }
 }
