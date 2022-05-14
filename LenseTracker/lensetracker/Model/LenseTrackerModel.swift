@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct LenseTrackerModel: Codable {
 
@@ -15,9 +16,11 @@ struct LenseTrackerModel: Codable {
         private(set) var areMyLensesOn: Bool = false //default - not on
         private(set) var lastDateLensesOff: Date? //optional, nll if we never used it
         private(set) var lastDateLensesOn: Date? //optional, nll if we never used it
-        //private var firstTimeUsedToday: Bool = true
         private (set) var lenseVendor: String = NSLocalizedString("<Производитель>", comment: "Lense supplier (data model)")
         private (set) var lenseModel: String = NSLocalizedString("<Обычные линзы>", comment: "Lense model (data model)")
+        
+    //usage history
+        private var usageHistory: [String] = [] //default is empty - not used
         
     //options
         private(set) var dailyReminders: Bool = true
@@ -44,47 +47,45 @@ struct LenseTrackerModel: Codable {
         self.expirationReminderTime = eReminder
     }
     
-    mutating func putOn() {
+    mutating func putOn(onDate: Date) {
         if !areMyLensesOn {
             self.areMyLensesOn = true
-            self.lastDateLensesOn = Date()
+            self.lastDateLensesOn = onDate
         }
     }
     
-    mutating func takeOff() {
+    mutating func takeOff(offDate: Date) {
         if areMyLensesOn {
-            areMyLensesOn = false
-         
-            if let lastDayOffDelta = self.lastDateLensesOff?.daysTo(Date()) {
-                //already used - not nil
-                if lastDayOffDelta > 0 {
-                    //already used, last time used is yesterday or more
-                    if lastDateLensesOn!.daysTo(Date()) == 0 {
-                        //last time I put my lenses on is today - decreasing daysLeft to 1 day
-                        daysUsed = self.daysUsed + 1
-                        lastDateLensesOff = Date()
-                    }
-                    else {
-                        //last time I put my lenses on is yesterday or before - decreasing daysLeft to the amount of days passed
-                        daysUsed = daysUsed + lastDateLensesOn!.daysTo(Date())! + 1
-                        lastDateLensesOff = Date()
-                    }
-                }
-            }
-            else {
-                //never take off - nil
-                if lastDateLensesOn!.daysTo(Date()) == 0 {
-                    //last time I put my lenses on is today - decreasing daysLeft to 1 day
-                    daysUsed = self.daysUsed + 1
-                    lastDateLensesOff = Date()
-                }
-                else {
-                    //last time I put my lenses on is yesterday or before - decreasing daysLeft to the amount of days passed
-                    daysUsed = daysUsed + lastDateLensesOn!.daysTo(Date())! + 1
-                    lastDateLensesOff = Date()
-                }
-            }
-            
+            self.areMyLensesOn = false
+            self.updateUsageHistory(lastDateLensesOn!, offDate)
+            self.daysUsed = usageHistory.count
+            self.lastDateLensesOff = offDate
+        }
+    }
+    
+    private func getDatesRangeArray(_ startDate: Date, _ endDate: Date) -> [String] {
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        
+        var cdate = startDate
+        var result: [String] = []
+        
+        while cdate.compare(endDate) != .orderedDescending {
+            // Advance by one day:
+            cdate = calendar.date(byAdding: .day, value: 1, to: cdate)!
+            result.append(dateFormatter.string(from: cdate))
+        }
+        return result
+    }
+    
+    private mutating func updateUsageHistory(_ startDate: Date, _ endDate: Date) {
+        
+        let datesRange = self.getDatesRangeArray(startDate, endDate)
+        let resultArray = Array(Set(datesRange).subtracting(Set(self.usageHistory)))
+        
+        for item in resultArray {
+            usageHistory.append(item)
         }
     }
     
@@ -102,6 +103,8 @@ struct LenseTrackerModel: Codable {
     
 }
 
+//MARK: seems not needed as soon as calc logic has changed. TBC.
+
 extension Date {
     func daysTo(_ date: Date) -> Int? {
         let calendar = Calendar.current
@@ -116,14 +119,14 @@ extension Date {
 }
 
 extension Date {
-
+    
             var startOfDay : Date {
                 let calendar = Calendar.current
                 let unitFlags = Set<Calendar.Component>([.year, .month, .day])
                 let components = calendar.dateComponents(unitFlags, from: self)
                 return calendar.date(from: components)!
-           }
-
+            }
+    
             var endOfDay : Date {
                 var components = DateComponents()
                 components.day = 1
