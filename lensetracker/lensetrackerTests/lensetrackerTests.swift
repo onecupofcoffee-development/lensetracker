@@ -13,7 +13,7 @@ import XCTest
 class lensetrackerTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        UserDefaults.resetStandardUserDefaults()
     }
 
     override func tearDownWithError() throws {
@@ -35,19 +35,11 @@ class lensetrackerTests: XCTestCase {
        XCTAssertNotNil(myLenses.lenseModel, "Model should not be nil")
        XCTAssertEqual(myLenses.dailyReminders, true, "Default daily reminder should be default true")
        XCTAssertEqual(myLenses.exceedUsageReminder, false, "Default exceed usage reminder should be false")
-       XCTAssertEqual(myLenses.dailyReminderTime, 79200, "Default reminder time is mins should be 79200")
-       XCTAssertEqual(myLenses.expirationReminderTime, 64800, "Default expiration time reminder should be 64800")
+       XCTAssertEqual(myLenses.dailyReminderTime, 79200, "Default reminder time in secs should be 79200")
+       XCTAssertEqual(myLenses.expirationReminderTime, 64800, "Default expiration time reminder in secs should be 64800")
        XCTAssertEqual(myLenses.daysUsed, 0, "Default days used should be 0")
        XCTAssertEqual(myLenses.daysLeft, 14, "Default days used should be 14")
        XCTAssertEqual(myLenses.isExpired, false, "Default is expired should be false")
-    }
-    
-    func addDays(days: Int, to date: Date ) -> Date {
-        return Date(timeInterval: Double(days)*86400, since: date)
-    }
-    
-    func addMins(mins: Int, to date: Date ) -> Date {
-        return Date(timeInterval: Double(mins)*60, since: date)
     }
     
     func testPutOn() throws {
@@ -147,23 +139,14 @@ class lensetrackerTests: XCTestCase {
             XCTAssertEqual(myLenses.lastDateLensesOff, addDays(days: 14, to: today), "Last date is not equal to off date!")
             XCTAssertEqual(myLenses.daysUsed, 13, "On day 14, used days should be 13 - 6 day is off lenses")
             XCTAssertEqual(myLenses.daysLeft,  myLenses.validPeriod-myLenses.daysUsed, "Days left should be 0 on day 14")
-
-        
-        /* MARK: view model
-         
-    testing coverage for viewmodel
-         
-         throwNotification
-         setReminder
-         calcReminderTime
-         getReminderTimeInDateFormat
-         putOn
-         takeOff
-         createNew
-         
-        */
-        
     }
     
+    func addDays(days: Int, to date: Date ) -> Date {
+        return Date(timeInterval: Double(days)*86400, since: date)
+    }
+    
+    func addMins(mins: Int, to date: Date ) -> Date {
+        return Date(timeInterval: Double(mins)*60, since: date)
+    }
 }
 

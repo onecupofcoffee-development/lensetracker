@@ -103,8 +103,6 @@ struct LenseTrackerModel: Codable {
     
 }
 
-//MARK: seems not needed as soon as calc logic has changed. TBC.
-
 extension Date {
     func daysTo(_ date: Date) -> Int? {
         let calendar = Calendar.current
