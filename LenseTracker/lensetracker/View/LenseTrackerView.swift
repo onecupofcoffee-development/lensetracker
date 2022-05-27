@@ -20,12 +20,15 @@ struct LenseTrackerView: View {
                             .onTapGesture {
                                 myViewModel.takeLensesOff()
                             }
+                            .accessibilityIdentifier("LenseImageOn")
                     }
                     else {
                         lenseImage(ison: false, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed))
                             .onTapGesture {
                                 myViewModel.PutLensesOn()
                             }
+                            .accessibilityIdentifier("LenseImageOff")
+                            
                     }
                     Spacer()
                     Divider()
@@ -39,6 +42,7 @@ struct LenseTrackerView: View {
                         Text(String(format: NSLocalizedString("Сменить линзы", comment: "Change lenses (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
+                        .accessibilityIdentifier("ChangeLensesButton")
                     }
                     .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)
@@ -51,6 +55,7 @@ struct LenseTrackerView: View {
                         Text(String(format: NSLocalizedString("Состояние линз", comment: "Lenses condition (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
+                        .accessibilityIdentifier("DetailsButton")
                     }
                     .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)
@@ -63,6 +68,7 @@ struct LenseTrackerView: View {
                         Text(String(format: NSLocalizedString("Настройки", comment: "Settings (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
+                        .accessibilityIdentifier("SettingsButton")
                     }
                     .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)

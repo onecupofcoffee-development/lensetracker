@@ -9,7 +9,7 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
+    "maximumTestExecutionTimeAllowance" : 600,
     "targetForVariableExpansion" : {
       "containerPath" : "container:lensetracker.xcodeproj",
       "identifier" : "24DB203526EFD32D006BA70A",
@@ -25,7 +25,9 @@
       }
     },
     {
-      "enabled" : false,
+      "skippedTests" : [
+        "lensetrackerUITestsLaunchTests"
+      ],
       "target" : {
         "containerPath" : "container:lensetracker.xcodeproj",
         "identifier" : "2462B708282B8E3B005BB1E9",

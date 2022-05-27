@@ -24,9 +24,11 @@ struct LensesDetails: View {
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("VendorLabel")
                         Text(String(myViewModel.myModel.lenseVendor))
                                 .font(.title2)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("VendorValue")
                         }
                     Divider()
                     HStack {
@@ -34,9 +36,11 @@ struct LensesDetails: View {
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("ModelLabel")
                         Text(String(myViewModel.myModel.lenseModel))
                                 .font(.title2)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("ModelValue")
                         }
                     Divider()
                     HStack {
@@ -44,9 +48,11 @@ struct LensesDetails: View {
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("OpticalForceLabel")
                         Text(String(myViewModel.myModel.opticalForce))
                                 .font(.title2)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("OpticalForceValue")
                     }
                         
                     Divider()
@@ -55,9 +61,11 @@ struct LensesDetails: View {
                             .padding(0)
                             .font(.headline)
                             .foregroundColor(.blue)
+                            .accessibilityIdentifier("DaysUsedLabel")
                         Text(String(myViewModel.myModel.daysUsed))
                             .font(.title2)
                             .foregroundColor(.blue)
+                            .accessibilityIdentifier("DaysUsedValue")
                     }
                     Divider()
                     HStack {
@@ -65,9 +73,11 @@ struct LensesDetails: View {
                             .padding(0)
                             .font(.headline)
                             .foregroundColor(.blue)
+                            .accessibilityIdentifier("DaysLeftLabel")
                     Text(String(myViewModel.myModel.daysLeft))
                             .font(.title2)
                             .foregroundColor(.blue)
+                            .accessibilityIdentifier("DaysLeftValue")
                     }
                 }
                 .zIndex(2)

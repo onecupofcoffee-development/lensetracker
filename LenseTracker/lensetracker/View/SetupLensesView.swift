@@ -58,21 +58,29 @@ struct SetupLensesView: View {
                     Section(header: Text(String(format: NSLocalizedString("Производитель", comment: "Vendor")))) {
                         TextField(myViewModel.myModel.lenseVendor, text: $lenseVendor)
                             .font(.footnote)
+                            .accessibilityIdentifier("VendorInput")
                     }
                     Section(header: Text(String(format: NSLocalizedString("Модель", comment: "Lense model")))) {
                         TextField(myViewModel.myModel.lenseModel, text: $lenseModel)
                             .font(.footnote)
+                            .accessibilityIdentifier("ModelInput")
                     }
+                    
                     Picker(NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force")+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
                         ForEach(forceOptions, id:  \.self) {
                             Text($0)
                         }
                     }
+                    .accessibilityIdentifier("OptForce")
+                    
+                    
                     Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
                         ForEach(validOptions, id:  \.self) {
                             Text($0)
                         }
                     }
+                    .accessibilityIdentifier("DaysValid")
+                    
                 
                     Section {
                         Button(action: {
@@ -87,6 +95,7 @@ struct SetupLensesView: View {
                         )
                             {
                                 Text(String(format: NSLocalizedString("Сохранить и надеть", comment: "save and put on (setup view)")))
+                                    .accessibilityIdentifier("SaveAndPutOn")
                             }
                     }
                 }
