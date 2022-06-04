@@ -79,12 +79,21 @@ class lensetrackerUITests: XCTestCase {
         let modelName = app.textFields["ModelInput"]
         let opticalForce = app.buttons["OptForce"]
         let daysValid = app.buttons["DaysValid"]
+        let daysValidContinuous = app.buttons["DaysValidContinuous"]
+        let daysValidToggle = app.switches["ContinuousUseToggle"]
         
         XCTAssertTrue(vendorName.exists, "Vendor name input does not exist!")
         XCTAssertTrue(modelName.exists, "Model name input does not exist!")
         XCTAssertTrue(opticalForce.exists, "Optical force picker does not exist!")
+        XCTAssertTrue(daysValidToggle.exists, "Valid days continuous toggle does not exist!")
+        
         XCTAssertTrue(daysValid.exists, "Valid days picker does not exist!")
-       
+        
+        if !daysValidContinuous.exists {
+            daysValidToggle.tap()
+            XCTAssertTrue(daysValidContinuous.exists, "Valid days continuous does not appear with toggle on!")
+        }
+        
         vendorName.doubleTap()
         vendorName.typeText("TestVendor")
         modelName.doubleTap()

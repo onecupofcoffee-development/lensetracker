@@ -142,9 +142,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -190,9 +190,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -206,9 +206,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -222,9 +222,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -270,9 +270,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -286,8 +286,8 @@
             filePath = "lensetracker/Model/LenseTrackerModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "updateUsageHistory(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "lensetracker/Model/LenseTrackerModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "getDatesRangeArray(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "lensetracker/Model/LenseTrackerModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "getDatesRangeArray(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +430,8 @@
             filePath = "lensetrackerUITests/lensetrackerUITests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "testChangeLensesFlow()"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,8 +446,8 @@
             filePath = "lensetrackerUITests/lensetrackerUITests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "testChangeLensesFlow()"
             landmarkType = "7">
             <Locations>

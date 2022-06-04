@@ -15,6 +15,9 @@ struct SetupLensesView: View {
     @State var lenseModel: String
     @State var opticalForce: String
     @State var validPeriod: String
+    @State var continuousValidPeriod: String
+    
+    @State var continuousUse: Bool
     
     let forceOptions = [
         "-10",
@@ -73,14 +76,34 @@ struct SetupLensesView: View {
                     }
                     .accessibilityIdentifier("OptForce")
                     
+                    Toggle(String(format: NSLocalizedString("Меньший срок при непрерывном ношении", comment: "continuous use toggle (Lenses setup view)")), isOn: $continuousUse)
+                        .accessibilityIdentifier("ContinuousUseToggle")
                     
-                    Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
-                        ForEach(validOptions, id:  \.self) {
-                            Text($0)
+                    if continuousUse {
+                        Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
+                            ForEach(validOptions, id:  \.self) {
+                                Text($0)
+                            }
                         }
+                        .accessibilityIdentifier("DaysValid")
+                        .font(.footnote)
+                        Picker(NSLocalizedString("Сколько дней можно носить непрерывно: ", comment: "valid, continuous days (setup view)")+String(myViewModel.myModel.maxdaysContinuousUse), selection: $continuousValidPeriod) {
+                            ForEach(validOptions, id:  \.self) {
+                                Text($0)
+                            }
+                        }
+                        .accessibilityIdentifier("DaysValidContinuous")
+                        .font(.footnote)
                     }
-                    .accessibilityIdentifier("DaysValid")
-                    
+                    else {
+                        Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
+                            ForEach(validOptions, id:  \.self) {
+                                Text($0)
+                            }
+                        }
+                        .accessibilityIdentifier("DaysValid")
+                        .font(.footnote)
+                    }
                 
                     Section {
                         Button(action: {
@@ -88,8 +111,9 @@ struct SetupLensesView: View {
                             let v = Int(validPeriod) ?? 14
                             let vendor = lenseVendor //?? "Pure Vision"
                             let model = lenseModel //?? "Oasys"
+                            let continuousValid = Int(continuousValidPeriod) ?? 14
                             
-                            myViewModel.createNewLenses(vendor, model, f, v)
+                            myViewModel.createNewLenses(vendor, model, f, v, continuousValid)
                             self.presentation.wrappedValue.dismiss()
                             }
                         )
@@ -106,7 +130,7 @@ struct SetupLensesView: View {
 
 struct SetupLensesView_Previews: PreviewProvider {
     static var previews: some View {
-        SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "")
+        SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "", continuousValidPeriod: "", continuousUse: true)
             .environmentObject(LenseTrackerViewModel())
     }
 }

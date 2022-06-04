@@ -30,7 +30,7 @@ class lensetrackerViewModelTests: XCTestCase {
     func testCreateNew() throws {
         let myViewModel = LenseTrackerViewModel()
         
-        myViewModel.createNewLenses("PureVision", "DailyOnes", -5, 7)
+        myViewModel.createNewLenses("PureVision", "DailyOnes", -5, 7, 7)
 
         XCTAssertEqual(myViewModel.myModel.opticalForce, -5, "Created new lenses has optical force of -5")
         XCTAssertEqual(myViewModel.myModel.validPeriod, 7, "Created new lenses valid period is 7")

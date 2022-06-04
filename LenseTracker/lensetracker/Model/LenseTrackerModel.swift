@@ -13,6 +13,7 @@ struct LenseTrackerModel: Codable {
     //Lense properties
         private(set) var opticalForce: Double = -2 //default
         private(set) var validPeriod: Int = 14 //default
+        private(set) var maxdaysContinuousUse: Int = 14 //default
         private(set) var areMyLensesOn: Bool = false //default - not on
         private(set) var lastDateLensesOff: Date? //optional, nll if we never used it
         private(set) var lastDateLensesOn: Date? //optional, nll if we never used it
@@ -20,7 +21,7 @@ struct LenseTrackerModel: Codable {
         private (set) var lenseModel: String = NSLocalizedString("<Обычные линзы>", comment: "Lense model (data model)")
         
     //usage history
-        private var usageHistory: [String] = [] //default is empty - not used
+        private var usageHistory: [String] = [] //default is empty - never used
         
     //options
         private(set) var dailyReminders: Bool = true
@@ -28,10 +29,25 @@ struct LenseTrackerModel: Codable {
         private(set) var dailyReminderTime: Int = 22*60*60 //minutes from 00:00 to 22-00 by default
         private(set) var expirationReminderTime: Int = 18*60*60 //minutes from 00:00 18-00 by default
     
+    //utilization
         private(set) var daysUsed: Int = 0 //default - not used yet
+        
+        var continuousUsageIsOn: Bool {
+            if validPeriod/maxdaysContinuousUse > 1 {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+    
         
         var daysLeft: Int {
                 return validPeriod - daysUsed
+        }
+    
+        var usageCoeff: Double {
+                return Double(validPeriod/maxdaysContinuousUse)
         }
     
         var isExpired: Bool {
@@ -57,8 +73,15 @@ struct LenseTrackerModel: Codable {
     mutating func takeOff(offDate: Date) {
         if areMyLensesOn {
             self.areMyLensesOn = false
-            self.updateUsageHistory(lastDateLensesOn!, offDate)
-            self.daysUsed = usageHistory.count
+            let nofdays = self.updateUsageHistory(lastDateLensesOn!, offDate)
+            
+            if nofdays > 1 {
+                self.daysUsed += Int(nofdays*Int(self.usageCoeff.rounded(.up)))
+            }
+            else {
+                self.daysUsed += nofdays
+            }
+            
             self.lastDateLensesOff = offDate
         }
     }
@@ -79,7 +102,7 @@ struct LenseTrackerModel: Codable {
         return result
     }
     
-    private mutating func updateUsageHistory(_ startDate: Date, _ endDate: Date) {
+    private mutating func updateUsageHistory(_ startDate: Date, _ endDate: Date) -> Int {
         
         let datesRange = self.getDatesRangeArray(startDate, endDate)
         let resultArray = Array(Set(datesRange).subtracting(Set(self.usageHistory)))
@@ -87,9 +110,11 @@ struct LenseTrackerModel: Codable {
         for item in resultArray {
             usageHistory.append(item)
         }
+        
+        return resultArray.count //number of days added
     }
     
-    mutating func createNew(vendor: String, model: String, force: Double, valid: Int) {
+    mutating func createNew(vendor: String, model: String, force: Double, valid: Int, continuousValid: Int) {
         //re-init lenses
         self.lenseVendor = vendor
         self.lenseModel = model
@@ -99,6 +124,8 @@ struct LenseTrackerModel: Codable {
         self.lastDateLensesOff = nil
         self.lastDateLensesOn = nil
         self.daysUsed = 0
+        self.maxdaysContinuousUse = continuousValid
+        self.usageHistory = []
     }
     
 }
