@@ -81,11 +81,13 @@ class lensetrackerUITests: XCTestCase {
         let daysValid = app.buttons["DaysValid"]
         let daysValidContinuous = app.buttons["DaysValidContinuous"]
         let daysValidToggle = app.switches["ContinuousUseToggle"]
+        let curveRaduis = app.textFields["CurveRaduis"]
         
         XCTAssertTrue(vendorName.exists, "Vendor name input does not exist!")
         XCTAssertTrue(modelName.exists, "Model name input does not exist!")
         XCTAssertTrue(opticalForce.exists, "Optical force picker does not exist!")
         XCTAssertTrue(daysValidToggle.exists, "Valid days continuous toggle does not exist!")
+        XCTAssertTrue(curveRaduis.exists, "Curve raduis input does not exist!")
         
         XCTAssertTrue(daysValid.exists, "Valid days picker does not exist!")
         
@@ -128,12 +130,14 @@ class lensetrackerUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["OpticalForceValue"].exists, "No lenses condition opt force value exist")
         XCTAssertTrue(app.staticTexts["DaysUsedValue"].exists, "No lenses condition days used value exist")
         XCTAssertTrue(app.staticTexts["DaysLeftValue"].exists, "No lenses condition days used value exist")
+        XCTAssertTrue(app.staticTexts["CurveRaduisValue"].exists, "No curve raduis value exists")
         
         XCTAssertTrue(app.staticTexts["VendorLabel"].exists, "No lenses condition vendor label exist")
         XCTAssertTrue(app.staticTexts["ModelLabel"].exists, "No lenses condition model label exist")
         XCTAssertTrue(app.staticTexts["OpticalForceLabel"].exists, "No lenses condition opt force label exist")
         XCTAssertTrue(app.staticTexts["DaysUsedLabel"].exists, "No lenses condition days used label exist")
         XCTAssertTrue(app.staticTexts["DaysLeftLabel"].exists, "No lenses condition days used label exist")
+        XCTAssertTrue(app.staticTexts["CurveRaduisLabel"].exists, "No curve raduis label exists")
     }
     
     func testAppSettingsFlow() throws {

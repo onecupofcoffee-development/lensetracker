@@ -30,7 +30,7 @@ class lensetrackerViewModelTests: XCTestCase {
     func testCreateNew() throws {
         let myViewModel = LenseTrackerViewModel()
         
-        myViewModel.createNewLenses("PureVision", "DailyOnes", -5, 7, 7)
+        myViewModel.createNewLenses("PureVision", "DailyOnes", -5, 7, 7, 8.6)
 
         XCTAssertEqual(myViewModel.myModel.opticalForce, -5, "Created new lenses has optical force of -5")
         XCTAssertEqual(myViewModel.myModel.validPeriod, 7, "Created new lenses valid period is 7")
@@ -46,6 +46,7 @@ class lensetrackerViewModelTests: XCTestCase {
         XCTAssertEqual(myViewModel.myModel.daysUsed, 0, "Default days used should be 0")
         XCTAssertEqual(myViewModel.myModel.daysLeft, 7, "Default days used should be 7")
         XCTAssertEqual(myViewModel.myModel.isExpired, false, "Default is expired should be false")
+        XCTAssertEqual(myViewModel.myModel.curvRadius, 8.6, "Curve raduis should be 8.6")
     }
     
     func testTakeOff() throws {

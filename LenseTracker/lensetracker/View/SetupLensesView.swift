@@ -16,6 +16,7 @@ struct SetupLensesView: View {
     @State var opticalForce: String
     @State var validPeriod: String
     @State var continuousValidPeriod: String
+    @State var curvRaduis: String
     
     @State var continuousUse: Bool
     
@@ -68,6 +69,11 @@ struct SetupLensesView: View {
                             .font(.footnote)
                             .accessibilityIdentifier("ModelInput")
                     }
+                    Section(header: Text(String(format: NSLocalizedString("Радиус кривизны", comment: "Lense Curve Raduis")))) {
+                        TextField(String(myViewModel.myModel.curvRadius), text: $curvRaduis)
+                            .font(.footnote)
+                            .accessibilityIdentifier("CurveRaduis")
+                    }
                     
                     Picker(NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force")+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
                         ForEach(forceOptions, id:  \.self) {
@@ -112,8 +118,9 @@ struct SetupLensesView: View {
                             let vendor = lenseVendor //?? "Pure Vision"
                             let model = lenseModel //?? "Oasys"
                             let continuousValid = Int(continuousValidPeriod) ?? 14
+                            let curvRaduis = Double(curvRaduis) ?? 8.3
                             
-                            myViewModel.createNewLenses(vendor, model, f, v, continuousValid)
+                            myViewModel.createNewLenses(vendor, model, f, v, continuousValid, curvRaduis)
                             self.presentation.wrappedValue.dismiss()
                             }
                         )
@@ -130,7 +137,7 @@ struct SetupLensesView: View {
 
 struct SetupLensesView_Previews: PreviewProvider {
     static var previews: some View {
-        SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "", continuousValidPeriod: "", continuousUse: true)
+        SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "", continuousValidPeriod: "", curvRaduis: "8.3", continuousUse: true)
             .environmentObject(LenseTrackerViewModel())
     }
 }

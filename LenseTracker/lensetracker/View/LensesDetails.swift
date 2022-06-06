@@ -18,7 +18,7 @@ struct LensesDetails: View {
                 .scaledToFill()
                 .zIndex(1)
                 VStack {
-                    Divider()
+                    //Divider()
                     HStack {
                         Text(String(format: NSLocalizedString("Производитель", comment: "Vendor")))
                                 .padding(0)
@@ -54,7 +54,18 @@ struct LensesDetails: View {
                                 .foregroundColor(.blue)
                                 .accessibilityIdentifier("OpticalForceValue")
                     }
-                        
+                    Divider()
+                    HStack {
+                        Text(String(format: NSLocalizedString("Радиус кривизны", comment: "Lense curve raduis")))
+                                .padding(0)
+                                .font(.headline)
+                                .foregroundColor(.blue)
+                                .accessibilityIdentifier("CurveRaduisLabel")
+                        Text(String(myViewModel.myModel.curvRadius))
+                                .font(.title2)
+                                .foregroundColor(.blue)
+                                .accessibilityIdentifier("CurveRaduisValue")
+                    }
                     Divider()
                     HStack {
                         Text(String(format: NSLocalizedString("Сколько дней я уже ношу линзы", comment: "Days in use (lenses detail view)")))
@@ -67,7 +78,7 @@ struct LensesDetails: View {
                             .foregroundColor(.blue)
                             .accessibilityIdentifier("DaysUsedValue")
                     }
-                    Divider()
+                    //Divider()
                     HStack {
                         Text(String(format: NSLocalizedString("Сколько дней осталось", comment: "Days left (lenses detail view")))
                             .padding(0)

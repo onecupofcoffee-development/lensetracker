@@ -19,6 +19,7 @@ struct LenseTrackerModel: Codable {
         private(set) var lastDateLensesOn: Date? //optional, nll if we never used it
         private (set) var lenseVendor: String = NSLocalizedString("<Производитель>", comment: "Lense supplier (data model)")
         private (set) var lenseModel: String = NSLocalizedString("<Обычные линзы>", comment: "Lense model (data model)")
+        private (set) var curvRadius: Double = 8.3
         
     //usage history
         private var usageHistory: [String] = [] //default is empty - never used
@@ -114,7 +115,7 @@ struct LenseTrackerModel: Codable {
         return resultArray.count //number of days added
     }
     
-    mutating func createNew(vendor: String, model: String, force: Double, valid: Int, continuousValid: Int) {
+    mutating func createNew(vendor: String, model: String, force: Double, valid: Int, continuousValid: Int, curvRadius: Double) {
         //re-init lenses
         self.lenseVendor = vendor
         self.lenseModel = model
@@ -126,6 +127,7 @@ struct LenseTrackerModel: Codable {
         self.daysUsed = 0
         self.maxdaysContinuousUse = continuousValid
         self.usageHistory = []
+        self.curvRadius = curvRadius
     }
     
 }

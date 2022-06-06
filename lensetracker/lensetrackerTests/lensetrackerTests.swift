@@ -43,12 +43,13 @@ class lensetrackerTests: XCTestCase {
         XCTAssertFalse(myLenses.continuousUsageIsOn, "Continuous Usage Coeff should be false")
         XCTAssertEqual(myLenses.maxdaysContinuousUse, 14, "Continuous Usage days should be 14 by default")
         XCTAssertEqual(myLenses.usageCoeff, 1, "Usage coefficient is to be 1 by default")
+        XCTAssertEqual(myLenses.curvRadius, 8.3, "Curve raduis should be 8.3 by default")
     }
     
     func testCreateNew() throws {
         //test for new lenses - CreateNew method
         var myLenses = LenseTrackerModel()
-        myLenses.createNew(vendor: "myTestVendor", model: "myTestModel", force: -10, valid: 14, continuousValid: 7)
+        myLenses.createNew(vendor: "myTestVendor", model: "myTestModel", force: -10, valid: 14, continuousValid: 7, curvRadius: 8.6)
         
         XCTAssertEqual(myLenses.lenseVendor, "myTestVendor", "CreateNew mutating function did not updated vendor")
         XCTAssertEqual(myLenses.lenseModel, "myTestModel", "CreateNew mutating function did not updated model")
@@ -57,6 +58,7 @@ class lensetrackerTests: XCTestCase {
         XCTAssertEqual(myLenses.maxdaysContinuousUse, 7, "CreateNew mutating function did not updated continuous valid period")
         XCTAssertEqual(myLenses.usageCoeff, 2, "Usage coeff should be 2 with 7 continuous daysValid, max daysValid 14")
         XCTAssertTrue(myLenses.continuousUsageIsOn, "Continuous usage should be on if coefficient is > 1")
+        XCTAssertEqual(myLenses.curvRadius, 8.6, "Curve Raduis should be 8.3 on init test")
     }
     
     func testPutOn() throws {
@@ -85,7 +87,7 @@ class lensetrackerTests: XCTestCase {
     
     func testUsageCalculationCoeff() throws {
         var myLenses = LenseTrackerModel()
-        myLenses.createNew(vendor: "myTestVendor", model: "myTestModel", force: -10, valid: 14, continuousValid: 7)
+        myLenses.createNew(vendor: "myTestVendor", model: "myTestModel", force: -10, valid: 14, continuousValid: 7, curvRadius: 8.3)
         let today = Date()
         
         //1 day on off

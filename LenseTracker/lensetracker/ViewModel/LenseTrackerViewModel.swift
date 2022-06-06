@@ -149,8 +149,8 @@ class LenseTrackerViewModel : ObservableObject {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
-    func createNewLenses(_ vendor: String, _ model: String, _ force: Double, _ valid: Int, _ continuousValid: Int) {
-        myModel.createNew(vendor: vendor, model: model, force: force, valid: valid, continuousValid: continuousValid)
+    func createNewLenses(_ vendor: String, _ model: String, _ force: Double, _ valid: Int, _ continuousValid: Int, _ curvRaduis: Double) {
+        myModel.createNew(vendor: vendor, model: model, force: force, valid: valid, continuousValid: continuousValid, curvRadius: curvRaduis)
         myModel.putOn(onDate: Date())
         if myModel.dailyReminders {
             debugPrint("setting up daily reminder")

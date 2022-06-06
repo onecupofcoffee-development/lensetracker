@@ -1,0 +1,2 @@
+cp -R /Users/mak/Documents/LenseTracker/lensetracker/lensetracker/*.lproj/ /Users/mak/Documents/LenseTracker/lensetracker/localization_backup/
+genstrings -o en.lproj lensetracker/*.swift
