@@ -19,6 +19,12 @@ struct SetupLensesView: View {
     @State var curvRaduis: String
     
     @State var continuousUse: Bool
+    @State var manualInput: Bool = false
+    
+    let curvRaduisOptions = [
+    "8.3",
+    "8.6"
+    ]
     
     let forceOptions = [
         "-10",
@@ -69,46 +75,94 @@ struct SetupLensesView: View {
                             .font(.footnote)
                             .accessibilityIdentifier("ModelInput")
                     }
-                    Section(header: Text(String(format: NSLocalizedString("Радиус кривизны", comment: "Lense Curve Raduis")))) {
-                        TextField(String(myViewModel.myModel.curvRadius), text: $curvRaduis)
-                            .font(.footnote)
-                            .accessibilityIdentifier("CurveRaduis")
-                    }
                     
-                    Picker(NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force")+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
-                        ForEach(forceOptions, id:  \.self) {
+                    Picker(NSLocalizedString("Радиус кривизны: ", comment: "Lense Curve Raduis")+String(myViewModel.myModel.curvRadius), selection: $curvRaduis) {
+                        ForEach(curvRaduisOptions, id:  \.self) {
                             Text($0)
                         }
                     }
-                    .accessibilityIdentifier("OptForce")
+                    .accessibilityIdentifier("CurveRaduis")
                     
-                    Toggle(String(format: NSLocalizedString("Меньший срок при непрерывном ношении", comment: "continuous use toggle (Lenses setup view)")), isOn: $continuousUse)
-                        .accessibilityIdentifier("ContinuousUseToggle")
+                    Toggle(String(format: NSLocalizedString("Ввести значения вручную: ", comment: "Lense values manual input")), isOn: $manualInput)
+                        .accessibilityIdentifier("ManualInputToggle")
                     
-                    if continuousUse {
-                        Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
-                            ForEach(validOptions, id:  \.self) {
-                                Text($0)
+                    //MARK: case of manual values input in text fields
+                    if manualInput {
+                        HStack {
+                            Text(String(format: (NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force"))))
+                                .accessibilityIdentifier("ManualInputOptForceLabel")
+                            TextField(String(myViewModel.myModel.opticalForce), text: $opticalForce)
+                                .accessibilityIdentifier("ManualInputOptForce")
+                                .multilineTextAlignment(.trailing)
+                        }
+                        
+                        Toggle(String(format: NSLocalizedString("Меньший срок при непрерывном ношении", comment: "continuous use toggle (Lenses setup view)")), isOn: $continuousUse)
+                            .accessibilityIdentifier("ContinuousUseToggle")
+                        
+                        if continuousUse {
+                            HStack {
+                                Text(String(format: (NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)"))))
+                                    .accessibilityIdentifier("ManualInputDaysValidLabel")
+                                TextField(String(myViewModel.myModel.validPeriod), text: $validPeriod)
+                                    .accessibilityIdentifier("ManualInputDaysValid")
+                                    .multilineTextAlignment(.trailing)
+                            }
+                            HStack {
+                                Text(String(format: (NSLocalizedString("Сколько дней можно носить непрерывно: ", comment: "valid, continuous days (setup view)"))))
+                                    .accessibilityIdentifier("ManualInputDaysValidContinuousLabel")
+                                TextField(String(myViewModel.myModel.maxdaysContinuousUse), text: $continuousValidPeriod)
+                                    .accessibilityIdentifier("ManualInputDaysValidContinuous")
+                                    .multilineTextAlignment(.trailing)
                             }
                         }
-                        .accessibilityIdentifier("DaysValid")
-                        .font(.footnote)
-                        Picker(NSLocalizedString("Сколько дней можно носить непрерывно: ", comment: "valid, continuous days (setup view)")+String(myViewModel.myModel.maxdaysContinuousUse), selection: $continuousValidPeriod) {
-                            ForEach(validOptions, id:  \.self) {
-                                Text($0)
+                        else {
+                            HStack {
+                                Text(String(format: (NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)"))))
+                                    .accessibilityIdentifier("ManualInputDaysValidLabel")
+                                TextField(String(myViewModel.myModel.validPeriod), text: $validPeriod)
+                                    .accessibilityIdentifier("ManualInputDaysValid")
+                                    .multilineTextAlignment(.trailing)
                             }
                         }
-                        .accessibilityIdentifier("DaysValidContinuous")
-                        .font(.footnote)
                     }
-                    else {
-                        Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
-                            ForEach(validOptions, id:  \.self) {
+                    //MARK: case of default values selection
+                    else
+                    {
+                        Picker(NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force")+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
+                            ForEach(forceOptions, id:  \.self) {
                                 Text($0)
                             }
                         }
-                        .accessibilityIdentifier("DaysValid")
-                        .font(.footnote)
+                        .accessibilityIdentifier("OptForce")
+                        
+                        Toggle(String(format: NSLocalizedString("Меньший срок при непрерывном ношении", comment: "continuous use toggle (Lenses setup view)")), isOn: $continuousUse)
+                            .accessibilityIdentifier("ContinuousUseToggle")
+                        
+                        if continuousUse {
+                            Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
+                                ForEach(validOptions, id:  \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .accessibilityIdentifier("DaysValid")
+                            .font(.footnote)
+                            Picker(NSLocalizedString("Сколько дней можно носить непрерывно: ", comment: "valid, continuous days (setup view)")+String(myViewModel.myModel.maxdaysContinuousUse), selection: $continuousValidPeriod) {
+                                ForEach(validOptions, id:  \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .accessibilityIdentifier("DaysValidContinuous")
+                            .font(.footnote)
+                        }
+                        else {
+                            Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
+                                ForEach(validOptions, id:  \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .accessibilityIdentifier("DaysValid")
+                            .font(.footnote)
+                        }
                     }
                 
                     Section {

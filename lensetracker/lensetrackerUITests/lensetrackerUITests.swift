@@ -81,19 +81,39 @@ class lensetrackerUITests: XCTestCase {
         let daysValid = app.buttons["DaysValid"]
         let daysValidContinuous = app.buttons["DaysValidContinuous"]
         let daysValidToggle = app.switches["ContinuousUseToggle"]
-        let curveRaduis = app.textFields["CurveRaduis"]
+        let curveRaduis = app.buttons["CurveRaduis"]
+        
+        let manualInputToggle = app.switches["ManualInputToggle"]
+        let manualInputOptForce = app.textFields["ManualInputOptForce"]
+        let manualInputDaysValid = app.textFields["ManualInputDaysValid"]
+        let manualInputDaysValidContinuous = app.textFields["ManualInputDaysValidContinuous"]
         
         XCTAssertTrue(vendorName.exists, "Vendor name input does not exist!")
         XCTAssertTrue(modelName.exists, "Model name input does not exist!")
-        XCTAssertTrue(opticalForce.exists, "Optical force picker does not exist!")
-        XCTAssertTrue(daysValidToggle.exists, "Valid days continuous toggle does not exist!")
         XCTAssertTrue(curveRaduis.exists, "Curve raduis input does not exist!")
+        XCTAssertTrue(manualInputToggle.exists, "Manual input toggle does not exist!")
         
         XCTAssertTrue(daysValid.exists, "Valid days picker does not exist!")
         
         if !daysValidContinuous.exists {
             daysValidToggle.tap()
             XCTAssertTrue(daysValidContinuous.exists, "Valid days continuous does not appear with toggle on!")
+        }
+        
+        if !opticalForce.exists || !daysValid.exists {
+            XCTAssertTrue(manualInputOptForce.exists, "Manual input opt force does not exist!")
+            XCTAssertTrue(manualInputDaysValid.exists, "Manual input days valid does not exist!")
+            XCTAssertTrue(manualInputDaysValidContinuous.exists, "Manual input days valid does not exist!")
+            manualInputToggle.tap()
+            XCTAssertTrue(opticalForce.exists, "Optical force picker does not appear on toggle tap!")
+            XCTAssertTrue(daysValidToggle.exists, "Valid days continuous toggle does not appear on toggle tap!")
+        }
+        
+        if opticalForce.exists && daysValid.exists {
+            manualInputToggle.tap()
+            XCTAssertTrue(manualInputOptForce.exists, "Manual input opt force does not exist!")
+            XCTAssertTrue(manualInputDaysValid.exists, "Manual input days valid does not exist!")
+            XCTAssertTrue(manualInputDaysValidContinuous.exists, "Manual input days valid continuous does not exist!")
         }
         
         vendorName.doubleTap()
