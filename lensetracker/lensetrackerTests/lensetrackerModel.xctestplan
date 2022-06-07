@@ -1,0 +1,39 @@
+{
+  "configurations" : [
+    {
+      "id" : "ECB53ACF-33EE-46BC-8DBA-BF6917AF9506",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "maximumTestExecutionTimeAllowance" : 600,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:lensetracker.xcodeproj",
+      "identifier" : "24DB203526EFD32D006BA70A",
+      "name" : "lensetracker"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:lensetracker.xcodeproj",
+        "identifier" : "2403760B282803F600014ACD",
+        "name" : "lensetrackerTests"
+      }
+    },
+    {
+      "skippedTests" : [
+        "lensetrackerUITestsLaunchTests"
+      ],
+      "target" : {
+        "containerPath" : "container:lensetracker.xcodeproj",
+        "identifier" : "2462B708282B8E3B005BB1E9",
+        "name" : "lensetrackerUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -18,15 +18,17 @@ struct LensesDetails: View {
                 .scaledToFill()
                 .zIndex(1)
                 VStack {
-                    Divider()
+                    //Divider()
                     HStack {
                         Text(String(format: NSLocalizedString("Производитель", comment: "Vendor")))
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("VendorLabel")
                         Text(String(myViewModel.myModel.lenseVendor))
                                 .font(.title2)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("VendorValue")
                         }
                     Divider()
                     HStack {
@@ -34,9 +36,11 @@ struct LensesDetails: View {
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("ModelLabel")
                         Text(String(myViewModel.myModel.lenseModel))
                                 .font(.title2)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("ModelValue")
                         }
                     Divider()
                     HStack {
@@ -44,30 +48,47 @@ struct LensesDetails: View {
                                 .padding(0)
                                 .font(.headline)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("OpticalForceLabel")
                         Text(String(myViewModel.myModel.opticalForce))
                                 .font(.title2)
                                 .foregroundColor(.blue)
+                                .accessibilityIdentifier("OpticalForceValue")
                     }
-                        
+                    Divider()
+                    HStack {
+                        Text(String(format: NSLocalizedString("Радиус кривизны", comment: "Lense curve raduis")))
+                                .padding(0)
+                                .font(.headline)
+                                .foregroundColor(.blue)
+                                .accessibilityIdentifier("CurveRaduisLabel")
+                        Text(String(myViewModel.myModel.curvRadius))
+                                .font(.title2)
+                                .foregroundColor(.blue)
+                                .accessibilityIdentifier("CurveRaduisValue")
+                    }
                     Divider()
                     HStack {
                         Text(String(format: NSLocalizedString("Сколько дней я уже ношу линзы", comment: "Days in use (lenses detail view)")))
                             .padding(0)
                             .font(.headline)
                             .foregroundColor(.blue)
+                            .accessibilityIdentifier("DaysUsedLabel")
                         Text(String(myViewModel.myModel.daysUsed))
                             .font(.title2)
                             .foregroundColor(.blue)
+                            .accessibilityIdentifier("DaysUsedValue")
                     }
-                    Divider()
+                    //Divider()
                     HStack {
                         Text(String(format: NSLocalizedString("Сколько дней осталось", comment: "Days left (lenses detail view")))
                             .padding(0)
                             .font(.headline)
                             .foregroundColor(.blue)
+                            .accessibilityIdentifier("DaysLeftLabel")
                     Text(String(myViewModel.myModel.daysLeft))
                             .font(.title2)
                             .foregroundColor(.blue)
+                            .accessibilityIdentifier("DaysLeftValue")
                     }
                 }
                 .zIndex(2)

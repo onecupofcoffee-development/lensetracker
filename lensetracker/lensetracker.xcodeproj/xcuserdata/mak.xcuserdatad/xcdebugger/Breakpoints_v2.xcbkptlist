@@ -142,9 +142,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -190,9 +190,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -206,9 +206,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -222,9 +222,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -270,9 +270,9 @@
             filePath = "lensetrackerTests/lensetrackerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "testUsageCalculation()"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "testUsageCalculationFlat()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -286,8 +286,8 @@
             filePath = "lensetracker/Model/LenseTrackerModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "updateUsageHistory(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "lensetracker/Model/LenseTrackerModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "getDatesRangeArray(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,9 +318,387 @@
             filePath = "lensetracker/Model/LenseTrackerModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "getDatesRangeArray(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E47D2E1B-B3CA-4FAF-A69E-CEF8BD6B4BFB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerTests/viewmodelTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "testGetMyLensesState()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DD459B2-DB64-449A-81B6-94A295723AD7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetracker/ViewModel/LenseTrackerViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "getMyLensesState()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A1A97EF7-13B1-434A-B307-4147AA19E80B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetracker/ViewModel/LenseTrackerViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DEF0CA4-7CEF-4564-A138-1C67E78C0D60"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetracker/ViewModel/LenseTrackerViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EDEDFDD5-F2E7-486E-9E76-64FF13E5D09E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerTests/viewmodelTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "testNotifications()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "389A927B-9E0B-46F5-A2CB-4B516A1D0651"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerUITests/lensetrackerUITests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "testLensesOnOffFlow()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE9699A3-8648-427B-8F1D-03C6D69ACC04"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerUITests/lensetrackerUITests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "testChangeLensesFlow()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerUITests/lensetrackerUITests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "testChangeLensesFlow()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65 - 6ecf4adf376f0349"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerUITests.lensetrackerUITests.testChangeLensesAndCheck() throws -&gt; ()"
+                  moduleName = "lensetrackerUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerUITests/lensetrackerUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1864">
+               </Location>
+               <Location
+                  uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65 - 6ecf4adf376f0349"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerUITests.lensetrackerUITests.testChangeLensesAndCheck() throws -&gt; ()"
+                  moduleName = "lensetrackerUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerUITests/lensetrackerUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1860">
+               </Location>
+               <Location
+                  uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65 - 6ecf4adf376f0349"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerUITests.lensetrackerUITests.testChangeLensesAndCheck() throws -&gt; ()"
+                  moduleName = "lensetrackerUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerUITests/lensetrackerUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "2000">
+               </Location>
+               <Location
+                  uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65 - 6ecf4adf376f0368"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerUITests.lensetrackerUITests.testChangeLensesAndCheck() throws -&gt; ()"
+                  moduleName = "lensetrackerUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerUITests/lensetrackerUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "2000">
+               </Location>
+               <Location
+                  uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65 - 6ecf4adf376f0307"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerUITests.lensetrackerUITests.testChangeLensesAndCheck() throws -&gt; ()"
+                  moduleName = "lensetrackerUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerUITests/lensetrackerUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "1520">
+               </Location>
+               <Location
+                  uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65 - 6ecf4adf376f0307"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerUITests.lensetrackerUITests.testChangeLensesAndCheck() throws -&gt; ()"
+                  moduleName = "lensetrackerUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerUITests/lensetrackerUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "2000">
+               </Location>
+               <Location
+                  uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65 - 6ecf4adf376f0307"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerUITests.lensetrackerUITests.testChangeLensesAndCheck() throws -&gt; ()"
+                  moduleName = "lensetrackerUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerUITests/lensetrackerUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "2040">
+               </Location>
+               <Location
+                  uuid = "C35A64FA-AD64-4B3D-8EF3-2372D9E04E65 - 6ecf4adf376f02aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerUITests.lensetrackerUITests.testChangeLensesAndCheck() throws -&gt; ()"
+                  moduleName = "lensetrackerUITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerUITests/lensetrackerUITests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "1520">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CECBB57A-F75F-4D1F-B859-2848643FC1F5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerUITests/lensetrackerUITests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "testChangeLensesFlow()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8540F3D5-8B82-4F32-A894-74F4E3205A46"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerUITests/lensetrackerUITests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "testChangeLensesFlow()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3EDC2026-3112-4E02-AFB0-B22943919706"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetracker/Model/LenseTrackerModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "updateCurrentSession(currentDate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1552E11A-F3F7-432D-BF93-29671AF03596"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetracker/Model/LenseTrackerModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "updateCurrentSession(currentDate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43D7BC78-FF1E-4D99-830B-F0A290061C4A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerTests/lensetrackerTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "testCurrentSessionUsageFlat()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "43D7BC78-FF1E-4D99-830B-F0A290061C4A - ec68708fc6bedd5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerTests.lensetrackerTests.testCurrentSessionUsage() throws -&gt; ()"
+                  moduleName = "lensetrackerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerTests/lensetrackerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "1208">
+               </Location>
+               <Location
+                  uuid = "43D7BC78-FF1E-4D99-830B-F0A290061C4A - ec68708fc6bedd5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "lensetrackerTests.lensetrackerTests.testCurrentSessionUsage() throws -&gt; ()"
+                  moduleName = "lensetrackerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mak/Documents/LenseTracker/lensetracker/lensetrackerTests/lensetrackerTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "1204">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C6DD565F-CEC3-44CE-B5CF-E0778306E1E3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lensetrackerUITests/lensetrackerUITests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "testCurrentSessionUsageIndicator()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

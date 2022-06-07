@@ -16,16 +16,19 @@ struct LenseTrackerView: View {
         NavigationView {
             VStack {
                     if myViewModel.getMyLensesState() {
-                            lenseImage(ison: true, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed))
+                            lenseImage(ison: true, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed), currentSessionUtilization: Double(myViewModel.myModel.daysUsedCurrentSession))
                             .onTapGesture {
                                 myViewModel.takeLensesOff()
                             }
+                            .accessibilityIdentifier("LenseImageOn")
                     }
                     else {
-                        lenseImage(ison: false, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed))
+                        lenseImage(ison: false, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed), currentSessionUtilization: Double(myViewModel.myModel.daysUsedCurrentSession))
                             .onTapGesture {
                                 myViewModel.PutLensesOn()
                             }
+                            .accessibilityIdentifier("LenseImageOff")
+                            
                     }
                     Spacer()
                     Divider()
@@ -39,6 +42,7 @@ struct LenseTrackerView: View {
                         Text(String(format: NSLocalizedString("Сменить линзы", comment: "Change lenses (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
+                        .accessibilityIdentifier("ChangeLensesButton")
                     }
                     .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)
@@ -51,6 +55,7 @@ struct LenseTrackerView: View {
                         Text(String(format: NSLocalizedString("Состояние линз", comment: "Lenses condition (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
+                        .accessibilityIdentifier("DetailsButton")
                     }
                     .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)
@@ -63,6 +68,7 @@ struct LenseTrackerView: View {
                         Text(String(format: NSLocalizedString("Настройки", comment: "Settings (main view)")))
                         .foregroundColor(.white)
                         .font(.title)
+                        .accessibilityIdentifier("SettingsButton")
                     }
                     .frame(width: parameters.buttonWidth, height: parameters.buttonHight, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .padding(.vertical)
@@ -75,7 +81,7 @@ struct LenseTrackerView: View {
                     .padding(50)
                 Spacer()
                 
-                NavigationLink(destination: SetupLensesView(lenseVendor: myViewModel.myModel.lenseVendor, lenseModel: myViewModel.myModel.lenseModel, opticalForce: String(myViewModel.myModel.opticalForce), validPeriod: String( myViewModel.myModel.validPeriod)) ,tag: "Setup", selection: $selection)
+                NavigationLink(destination: SetupLensesView(lenseVendor: myViewModel.myModel.lenseVendor, lenseModel: myViewModel.myModel.lenseModel, opticalForce: String(myViewModel.myModel.opticalForce), validPeriod: String( myViewModel.myModel.validPeriod), continuousValidPeriod: String( myViewModel.myModel.validPeriod), curvRaduis: String(myViewModel.myModel.curvRadius), continuousUse: myViewModel.myModel.continuousUsageIsOn) ,tag: "Setup", selection: $selection)
                     { EmptyView() }
                 NavigationLink(destination: LensesDetails() ,tag: "Details", selection: $selection) { EmptyView() }
                 NavigationLink(destination: AppSettingsView(dailyReminder: myViewModel.myModel.dailyReminders, expirationReminder: myViewModel.myModel.exceedUsageReminder, intDReminderime: myViewModel.myModel.dailyReminderTime, intEReminderime: myViewModel.myModel.expirationReminderTime) ,tag: "Settings", selection: $selection) { EmptyView() }

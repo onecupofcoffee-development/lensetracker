@@ -26,6 +26,7 @@ class LenseTrackerViewModel : ObservableObject {
         if let savedData = UserDefaults.standard.object(forKey: "LenseData") as? Data {
             if let savedStruct = try? decoder.decode(LenseTrackerModel.self, from: savedData) {
                 self.myModel = savedStruct
+                self.myModel.updateCurrentSession(currentDate: Date())
                 return
             }
         }
@@ -132,6 +133,7 @@ class LenseTrackerViewModel : ObservableObject {
     
     func PutLensesOn() {
         myModel.putOn(onDate: Date())
+        myModel.updateCurrentSession(currentDate: Date())
         debugPrint("lenses are on, managing reminders. ExceededUsageReminder is \(myModel.exceedUsageReminder), isExpired is \(myModel.isExpired)")
         if myModel.dailyReminders {
             debugPrint("setting up daily reminder")
@@ -149,8 +151,8 @@ class LenseTrackerViewModel : ObservableObject {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
-    func createNewLenses(_ vendor: String, _ model: String, _ force: Double, _ valid: Int) {
-        myModel.createNew(vendor: vendor, model: model, force: force, valid: valid)
+    func createNewLenses(_ vendor: String, _ model: String, _ force: Double, _ valid: Int, _ continuousValid: Int, _ curvRaduis: Double) {
+        myModel.createNew(vendor: vendor, model: model, force: force, valid: valid, continuousValid: continuousValid, curvRadius: curvRaduis)
         myModel.putOn(onDate: Date())
         if myModel.dailyReminders {
             debugPrint("setting up daily reminder")

@@ -15,6 +15,16 @@ struct SetupLensesView: View {
     @State var lenseModel: String
     @State var opticalForce: String
     @State var validPeriod: String
+    @State var continuousValidPeriod: String
+    @State var curvRaduis: String
+    
+    @State var continuousUse: Bool
+    @State var manualInput: Bool = false
+    
+    let curvRaduisOptions = [
+    "8.3",
+    "8.6"
+    ]
     
     let forceOptions = [
         "-10",
@@ -58,19 +68,100 @@ struct SetupLensesView: View {
                     Section(header: Text(String(format: NSLocalizedString("Производитель", comment: "Vendor")))) {
                         TextField(myViewModel.myModel.lenseVendor, text: $lenseVendor)
                             .font(.footnote)
+                            .accessibilityIdentifier("VendorInput")
                     }
                     Section(header: Text(String(format: NSLocalizedString("Модель", comment: "Lense model")))) {
                         TextField(myViewModel.myModel.lenseModel, text: $lenseModel)
                             .font(.footnote)
+                            .accessibilityIdentifier("ModelInput")
                     }
-                    Picker(NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force")+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
-                        ForEach(forceOptions, id:  \.self) {
+                    
+                    Picker(NSLocalizedString("Радиус кривизны: ", comment: "Lense Curve Raduis")+String(myViewModel.myModel.curvRadius), selection: $curvRaduis) {
+                        ForEach(curvRaduisOptions, id:  \.self) {
                             Text($0)
                         }
                     }
-                    Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
-                        ForEach(validOptions, id:  \.self) {
-                            Text($0)
+                    .accessibilityIdentifier("CurveRaduis")
+                    
+                    Toggle(String(format: NSLocalizedString("Ввести значения вручную: ", comment: "Lense values manual input")), isOn: $manualInput)
+                        .accessibilityIdentifier("ManualInputToggle")
+                    
+                    //MARK: case of manual values input in text fields
+                    if manualInput {
+                        HStack {
+                            Text(String(format: (NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force"))))
+                                .accessibilityIdentifier("ManualInputOptForceLabel")
+                            TextField(String(myViewModel.myModel.opticalForce), text: $opticalForce)
+                                .accessibilityIdentifier("ManualInputOptForce")
+                                .multilineTextAlignment(.trailing)
+                        }
+                        
+                        Toggle(String(format: NSLocalizedString("Меньший срок при непрерывном ношении", comment: "continuous use toggle (Lenses setup view)")), isOn: $continuousUse)
+                            .accessibilityIdentifier("ContinuousUseToggle")
+                        
+                        if continuousUse {
+                            HStack {
+                                Text(String(format: (NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)"))))
+                                    .accessibilityIdentifier("ManualInputDaysValidLabel")
+                                TextField(String(myViewModel.myModel.validPeriod), text: $validPeriod)
+                                    .accessibilityIdentifier("ManualInputDaysValid")
+                                    .multilineTextAlignment(.trailing)
+                            }
+                            HStack {
+                                Text(String(format: (NSLocalizedString("Сколько дней можно носить непрерывно: ", comment: "valid, continuous days (setup view)"))))
+                                    .accessibilityIdentifier("ManualInputDaysValidContinuousLabel")
+                                TextField(String(myViewModel.myModel.maxdaysContinuousUse), text: $continuousValidPeriod)
+                                    .accessibilityIdentifier("ManualInputDaysValidContinuous")
+                                    .multilineTextAlignment(.trailing)
+                            }
+                        }
+                        else {
+                            HStack {
+                                Text(String(format: (NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)"))))
+                                    .accessibilityIdentifier("ManualInputDaysValidLabel")
+                                TextField(String(myViewModel.myModel.validPeriod), text: $validPeriod)
+                                    .accessibilityIdentifier("ManualInputDaysValid")
+                                    .multilineTextAlignment(.trailing)
+                            }
+                        }
+                    }
+                    //MARK: case of default values selection
+                    else
+                    {
+                        Picker(NSLocalizedString("Оптическая сила линз: ", comment: "Lense optical force")+String(myViewModel.myModel.opticalForce), selection: $opticalForce) {
+                            ForEach(forceOptions, id:  \.self) {
+                                Text($0)
+                            }
+                        }
+                        .accessibilityIdentifier("OptForce")
+                        
+                        Toggle(String(format: NSLocalizedString("Меньший срок при непрерывном ношении", comment: "continuous use toggle (Lenses setup view)")), isOn: $continuousUse)
+                            .accessibilityIdentifier("ContinuousUseToggle")
+                        
+                        if continuousUse {
+                            Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
+                                ForEach(validOptions, id:  \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .accessibilityIdentifier("DaysValid")
+                            //.font(.footnote)
+                            Picker(NSLocalizedString("Сколько дней можно носить непрерывно: ", comment: "valid, continuous days (setup view)")+String(myViewModel.myModel.maxdaysContinuousUse), selection: $continuousValidPeriod) {
+                                ForEach(validOptions, id:  \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .accessibilityIdentifier("DaysValidContinuous")
+                            //.font(.footnote)
+                        }
+                        else {
+                            Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
+                                ForEach(validOptions, id:  \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .accessibilityIdentifier("DaysValid")
+                            //.font(.footnote)
                         }
                     }
                 
@@ -80,13 +171,16 @@ struct SetupLensesView: View {
                             let v = Int(validPeriod) ?? 14
                             let vendor = lenseVendor //?? "Pure Vision"
                             let model = lenseModel //?? "Oasys"
+                            let continuousValid = Int(continuousValidPeriod) ?? 14
+                            let curvRaduis = Double(curvRaduis) ?? 8.3
                             
-                            myViewModel.createNewLenses(vendor, model, f, v)
+                            myViewModel.createNewLenses(vendor, model, f, v, continuousValid, curvRaduis)
                             self.presentation.wrappedValue.dismiss()
                             }
                         )
                             {
                                 Text(String(format: NSLocalizedString("Сохранить и надеть", comment: "save and put on (setup view)")))
+                                    .accessibilityIdentifier("SaveAndPutOn")
                             }
                     }
                 }
@@ -97,7 +191,7 @@ struct SetupLensesView: View {
 
 struct SetupLensesView_Previews: PreviewProvider {
     static var previews: some View {
-        SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "")
+        SetupLensesView(lenseVendor: "", lenseModel: "", opticalForce: "", validPeriod: "", continuousValidPeriod: "", curvRaduis: "8.3", continuousUse: true)
             .environmentObject(LenseTrackerViewModel())
     }
 }
