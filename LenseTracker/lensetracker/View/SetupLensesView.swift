@@ -145,14 +145,14 @@ struct SetupLensesView: View {
                                 }
                             }
                             .accessibilityIdentifier("DaysValid")
-                            .font(.footnote)
+                            //.font(.footnote)
                             Picker(NSLocalizedString("Сколько дней можно носить непрерывно: ", comment: "valid, continuous days (setup view)")+String(myViewModel.myModel.maxdaysContinuousUse), selection: $continuousValidPeriod) {
                                 ForEach(validOptions, id:  \.self) {
                                     Text($0)
                                 }
                             }
                             .accessibilityIdentifier("DaysValidContinuous")
-                            .font(.footnote)
+                            //.font(.footnote)
                         }
                         else {
                             Picker(NSLocalizedString("Сколько дней можно носить: ", comment: "valid, days (setup view)")+String(myViewModel.myModel.validPeriod), selection: $validPeriod) {
@@ -161,7 +161,7 @@ struct SetupLensesView: View {
                                 }
                             }
                             .accessibilityIdentifier("DaysValid")
-                            .font(.footnote)
+                            //.font(.footnote)
                         }
                     }
                 
