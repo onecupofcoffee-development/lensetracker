@@ -40,10 +40,11 @@ class lensetrackerTests: XCTestCase {
        XCTAssertEqual(myLenses.daysUsed, 0, "Default days used should be 0")
        XCTAssertEqual(myLenses.daysLeft, 14, "Default days used should be 14")
        XCTAssertEqual(myLenses.isExpired, false, "Default is expired should be false")
-        XCTAssertFalse(myLenses.continuousUsageIsOn, "Continuous Usage Coeff should be false")
-        XCTAssertEqual(myLenses.maxdaysContinuousUse, 14, "Continuous Usage days should be 14 by default")
-        XCTAssertEqual(myLenses.usageCoeff, 1, "Usage coefficient is to be 1 by default")
-        XCTAssertEqual(myLenses.curvRadius, 8.3, "Curve raduis should be 8.3 by default")
+       XCTAssertFalse(myLenses.continuousUsageIsOn, "Continuous Usage Coeff should be false")
+       XCTAssertEqual(myLenses.maxdaysContinuousUse, 14, "Continuous Usage days should be 14 by default")
+       XCTAssertEqual(myLenses.usageCoeff, 1, "Usage coefficient is to be 1 by default")
+       XCTAssertEqual(myLenses.curvRadius, 8.3, "Curve raduis should be 8.3 by default")
+       XCTAssertEqual(myLenses.daysUsedCurrentSession, 0, "Default days used current session should be 0")
     }
     
     func testCreateNew() throws {
@@ -83,6 +84,62 @@ class lensetrackerTests: XCTestCase {
             XCTAssertNotNil(myLenses.lastDateLensesOff, "Default last date off was not set properly!")
             XCTAssertTrue(myLenses.daysUsed>0, "Days used is not changing with off event")
             XCTAssertTrue(myLenses.daysLeft<14, "Days left is not changing with off event")
+    }
+    
+    func testCurrentSessionUsageFlat() throws {
+        var myLenses = LenseTrackerModel()
+        myLenses.createNew(vendor: "myTestVendor", model: "myTestModel", force: -10, valid: 14, continuousValid: 14, curvRadius: 8.3)
+        let today = Date()
+        
+        //MARK: same day on/off
+        myLenses.putOn(onDate: today)
+        
+        myLenses.updateCurrentSession(currentDate: addMins(mins: 30, to: today))
+        
+        XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==1, "Days used current session adjusted to 1 within the 1st day")
+        
+        myLenses.updateCurrentSession(currentDate: addDays(days: 1, to: today))
+        
+        XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==2, "Days used current session adjusted to 2 after two days")
+        
+        myLenses.updateCurrentSession(currentDate: addDays(days: 2, to: today))
+        
+        XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==3, "Days used current session adjusted to 3 after 3 days")
+        
+        myLenses.takeOff(offDate: addDays(days: 3, to: today))
+        XCTAssertTrue(myLenses.daysUsed==4, "Days used should be 4 after 4 days")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==0, "Days used current session should be 0 if lenses off")
+    }
+    
+    func testCurrentSessionUsageContinuous() throws {
+        var myLenses = LenseTrackerModel()
+        myLenses.createNew(vendor: "myTestVendor", model: "myTestModel", force: -10, valid: 14, continuousValid: 7, curvRadius: 8.3)
+        let today = Date()
+        
+        //MARK: same day on/off
+        myLenses.putOn(onDate: today)
+        
+        myLenses.updateCurrentSession(currentDate: addMins(mins: 30, to: today))
+        
+        XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==2, "Days used current session adjusted to 1 within the 1st day")
+        
+        myLenses.updateCurrentSession(currentDate: addDays(days: 1, to: today))
+        
+        XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==4, "Days used current session adjusted to 2 after two days")
+        
+        myLenses.updateCurrentSession(currentDate: addDays(days: 2, to: today))
+        
+        XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==6, "Days used current session adjusted to 3 after 3 days")
+        
+        myLenses.takeOff(offDate: addDays(days: 3, to: today))
+        XCTAssertTrue(myLenses.daysUsed==8, "Days used should be 4 after 4 days")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==0, "Days used current session should be 0 if lenses off")
     }
     
     func testUsageCalculationCoeff() throws {

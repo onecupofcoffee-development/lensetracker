@@ -235,6 +235,34 @@ class lensetrackerUITests: XCTestCase {
         })
         
     }
+    
+    func testCurrentSessionUsageIndicator() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        //MARK: set up variables for lense on and off view state, progress bar
+    
+        let lenseImgOn = app.images["LenseImageOn"]
+        let lenseImgOff = app.images["LenseImageOff"]
+        
+        //MARK: ensure lenses are on before we shut the application down
+        if lenseImgOff.exists {
+            //case lenses are not on - wearing them
+            app.images["lense"].tap()
+        }
+        
+        let totalUsageIndicator = app.progressIndicators.element(boundBy: 0)
+        let currentUsageIndicator = app.progressIndicators.element(boundBy: 1)
+        
+        let totalUsageValue = totalUsageIndicator.value as? String
+        let currentUsageValue = currentUsageIndicator.value as? String
+     
+        XCTAssertTrue(totalUsageIndicator.exists, "Usage progress indicator does not exist!")
+        XCTAssertTrue(currentUsageIndicator.exists, "Current session progress indicator does not exist!")
+        
+        XCTAssertNotEqual(totalUsageValue, currentUsageValue, "There should be difference btw current session indicator and usage indicator!")
+        
+    }
 
     /*
     func testLaunchPerformance() throws {

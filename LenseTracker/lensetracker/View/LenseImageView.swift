@@ -11,6 +11,7 @@ struct lenseImage: View {
     @State var ison: Bool
     @State var limit: Double
     @State var utilization: Double
+    @State var currentSessionUtilization: Double
     
     func getGaugeColor() -> Color {
             let choice = 1 - utilization/limit
@@ -45,6 +46,7 @@ struct lenseImage: View {
     var body: some View {
         ZStack {
             if utilization >= limit {
+                //usage utilization
                 ProgressView("Состояние линзы: ", value: 1, total: 1)
                     .progressViewStyle(GaugeProgressStyle(strokeColor: Color.red))
                         .frame(width: 280, height: 280)
@@ -58,21 +60,32 @@ struct lenseImage: View {
                 Circle()
                     .frame(width: 250, height: 250, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .foregroundColor(.white)
-                .zIndex(1)}
+                .zIndex(1)
+            }
             else {
-                    ProgressView("Состояние линзы: ", value: limit-utilization, total: limit)
+                //current session utilization
+                if ison {
+                 ProgressView("Текущее состояние линзы: ", value: limit-(utilization+currentSessionUtilization), total: limit)
+                        .progressViewStyle(GaugeProgressStyle(strokeColor: getGaugeColor()))
+                        .frame(width: 300, height: 300)
+                    .contentShape(Rectangle())
+                    .opacity(0.3)
+                    .zIndex(4)
+                }
+                //total usage utilization
+                ProgressView("Состояние линзы: ", value: limit-utilization, total: limit)
                     .progressViewStyle(GaugeProgressStyle(strokeColor: getGaugeColor()))
-                            .frame(width: 280, height: 280)
-                            .contentShape(Rectangle())
-                        .zIndex(3)
-                    Image("lense")
+                    .frame(width: 280, height: 280)
+                    .contentShape(Rectangle())
+                    .zIndex(3)
+                Image("lense")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .zIndex(2)
-                    Circle()
-                        .frame(width: 250, height: 250, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.white)
+                Circle()
+                    .frame(width: 250, height: 250, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(.white)
                     .zIndex(1)
             }
             Circle()

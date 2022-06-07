@@ -23,6 +23,7 @@ struct LenseTrackerModel: Codable {
         
     //usage history
         private var usageHistory: [String] = [] //default is empty - never used
+        private var currentSessionUsageHistory: [String] = [] //default is empty - never used
         
     //options
         private(set) var dailyReminders: Bool = true
@@ -32,6 +33,7 @@ struct LenseTrackerModel: Codable {
     
     //utilization
         private(set) var daysUsed: Int = 0 //default - not used yet
+        private(set) var daysUsedCurrentSession: Int = 0 //default - not used
         
         var continuousUsageIsOn: Bool {
             if validPeriod/maxdaysContinuousUse > 1 {
@@ -74,6 +76,7 @@ struct LenseTrackerModel: Codable {
     mutating func takeOff(offDate: Date) {
         if areMyLensesOn {
             self.areMyLensesOn = false
+            self.daysUsedCurrentSession = 0
             let nofdays = self.updateUsageHistory(lastDateLensesOn!, offDate)
             
             if nofdays > 1 {
@@ -115,6 +118,20 @@ struct LenseTrackerModel: Codable {
         return resultArray.count //number of days added
     }
     
+    mutating func updateCurrentSession(currentDate: Date) {
+        
+        if let onDate = self.lastDateLensesOn {
+            let datesRange = self.getDatesRangeArray(onDate, currentDate)
+            let resultArray = Array(Set(datesRange).subtracting(Set(self.currentSessionUsageHistory)))
+            
+            for item in resultArray {
+                currentSessionUsageHistory.append(item)
+            }
+            
+            self.daysUsedCurrentSession = Int(currentSessionUsageHistory.count*Int(self.usageCoeff.rounded(.up)))
+        }
+    }
+    
     mutating func createNew(vendor: String, model: String, force: Double, valid: Int, continuousValid: Int, curvRadius: Double) {
         //re-init lenses
         self.lenseVendor = vendor
@@ -127,6 +144,7 @@ struct LenseTrackerModel: Codable {
         self.daysUsed = 0
         self.maxdaysContinuousUse = continuousValid
         self.usageHistory = []
+        self.currentSessionUsageHistory = []
         self.curvRadius = curvRadius
     }
     

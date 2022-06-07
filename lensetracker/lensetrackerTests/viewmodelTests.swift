@@ -59,6 +59,24 @@ class lensetrackerViewModelTests: XCTestCase {
         XCTAssertNotNil(myViewModel.myModel.lastDateLensesOff, "Default last date off was not set properly!")
         XCTAssertTrue(myViewModel.myModel.daysUsed>0, "Days used is not changing with off event")
         XCTAssertTrue(myViewModel.myModel.daysLeft<14, "Days left is not changing with off event")
+        XCTAssertTrue(myViewModel.myModel.daysUsedCurrentSession==0, "Current session usage should be 0, if lenses are off!")
+    }
+    
+    func testInit() throws {
+        
+        var myTestModel: LenseTrackerViewModel?
+        
+        myTestModel = LenseTrackerViewModel() //init
+        myTestModel?.PutLensesOn()
+        
+        myTestModel = nil //deinit
+    
+        myTestModel = LenseTrackerViewModel() //again init
+        
+        //test
+        
+        XCTAssertTrue(myTestModel!.myModel.areMyLensesOn == true, "My test model must get the data from UserDefaults with isOn = true!")
+        XCTAssertTrue(myTestModel!.myModel.daysUsedCurrentSession>0, "Current session usage should not be 0 on init, if lenses are on!")
     }
     
     func testPutOn() throws {
