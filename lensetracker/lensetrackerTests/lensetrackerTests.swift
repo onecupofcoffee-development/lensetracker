@@ -125,20 +125,34 @@ class lensetrackerTests: XCTestCase {
         myLenses.updateCurrentSession(currentDate: addMins(mins: 30, to: today))
         
         XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
-        XCTAssertTrue(myLenses.daysUsedCurrentSession==2, "Days used current session adjusted to 1 within the 1st day")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==2, "Days used current session adjusted to 2 within the 1st day")
         
         myLenses.updateCurrentSession(currentDate: addDays(days: 1, to: today))
         
         XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
-        XCTAssertTrue(myLenses.daysUsedCurrentSession==4, "Days used current session adjusted to 2 after two days")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==4, "Days used current session adjusted to 4 after two days")
         
         myLenses.updateCurrentSession(currentDate: addDays(days: 2, to: today))
         
         XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
-        XCTAssertTrue(myLenses.daysUsedCurrentSession==6, "Days used current session adjusted to 3 after 3 days")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==6, "Days used current session adjusted to 6 after 3 days")
         
         myLenses.takeOff(offDate: addDays(days: 3, to: today))
-        XCTAssertTrue(myLenses.daysUsed==8, "Days used should be 4 after 4 days")
+        
+        XCTAssertEqual(myLenses.daysUsed, 8, "Days used should be 8 after 4 days")
+        XCTAssertEqual(myLenses.daysLeft, 6, "Days left should be 6 after 4 days")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==0, "Days used current session should be 0 if lenses off")
+        
+        //MARK: put on after used for 4 days continously
+        myLenses.putOn(onDate: addDays(days: 5, to: today))
+        myLenses.updateCurrentSession(currentDate: addDays(days: 5, to: today))
+        
+        XCTAssertEqual(myLenses.daysUsed, 8, "Days used should be 8 after 4 days, before I take off")
+        XCTAssertEqual(myLenses.daysUsedCurrentSession, 8, "Days used current session adjusted to 2 within the 1st day of use")
+        
+        myLenses.takeOff(offDate: addDays(days: 6, to: today))
+        XCTAssertEqual(myLenses.daysUsed, 12, "Days used should be 12 after 6 days")
+        XCTAssertEqual(myLenses.daysLeft, 2, "Days left should be 2 after 6 days")
         XCTAssertTrue(myLenses.daysUsedCurrentSession==0, "Days used current session should be 0 if lenses off")
     }
     

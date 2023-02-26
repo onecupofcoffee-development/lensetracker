@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+
 struct lensetrackerApp: App {
     
     @StateObject var myViewModel = LenseTrackerViewModel()

@@ -68,7 +68,7 @@ struct LensesDetails: View {
                     }
                     Divider()
                     HStack {
-                        Text(String(format: NSLocalizedString("Сколько дней я уже ношу линзы", comment: "Days in use (lenses detail view)")))
+                        Text(String(format: NSLocalizedString("Дней прошло (включая ночи)", comment: "Days in use (lenses detail view)")))
                             .padding(0)
                             .font(.headline)
                             .foregroundColor(.blue)
@@ -80,7 +80,7 @@ struct LensesDetails: View {
                     }
                     //Divider()
                     HStack {
-                        Text(String(format: NSLocalizedString("Сколько дней осталось", comment: "Days left (lenses detail view")))
+                        Text(String(format: NSLocalizedString("Дней осталось", comment: "Days left (lenses detail view")))
                             .padding(0)
                             .font(.headline)
                             .foregroundColor(.blue)

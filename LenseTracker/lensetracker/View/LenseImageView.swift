@@ -65,7 +65,7 @@ struct lenseImage: View {
             else {
                 //current session utilization
                 if ison {
-                 ProgressView("Текущее состояние линзы: ", value: limit-(utilization+currentSessionUtilization), total: limit)
+                 ProgressView("Текущее состояние линзы: ", value: limit-currentSessionUtilization, total: limit)
                         .progressViewStyle(GaugeProgressStyle(strokeColor: getGaugeColor()))
                         .frame(width: 300, height: 300)
                     .contentShape(Rectangle())
