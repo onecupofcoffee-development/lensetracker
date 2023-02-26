@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2403760F282803F600014ACD /* lensetrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403760E282803F600014ACD /* lensetrackerTests.swift */; };
 		241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B934B27010EE30092F9A1 /* LenseImageView.swift */; };
+		24498C5D29ABBC39000847DC /* AppDebugInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24498C5C29ABBC39000847DC /* AppDebugInit.swift */; };
 		2462B70328285996005BB1E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2462B70128285996005BB1E9 /* Localizable.strings */; };
 		2462B70C282B8E3B005BB1E9 /* lensetrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462B70B282B8E3B005BB1E9 /* lensetrackerUITests.swift */; };
 		2462B70E282B8E3B005BB1E9 /* lensetrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462B70D282B8E3B005BB1E9 /* lensetrackerUITestsLaunchTests.swift */; };
@@ -45,6 +46,7 @@
 		2403760C282803F600014ACD /* lensetrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lensetrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2403760E282803F600014ACD /* lensetrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lensetrackerTests.swift; sourceTree = "<group>"; };
 		241B934B27010EE30092F9A1 /* LenseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenseImageView.swift; sourceTree = "<group>"; };
+		24498C5C29ABBC39000847DC /* AppDebugInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDebugInit.swift; sourceTree = "<group>"; };
 		2462B70228285996005BB1E9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2462B70428285CC0005BB1E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2462B709282B8E3B005BB1E9 /* lensetrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lensetrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,7 @@
 				2462B70028284C44005BB1E9 /* View */,
 				2462B6FF28284C3A005BB1E9 /* ViewModel */,
 				24DB203926EFD32D006BA70A /* lensetrackerApp.swift */,
+				24498C5C29ABBC39000847DC /* AppDebugInit.swift */,
 				2462B70128285996005BB1E9 /* Localizable.strings */,
 				24DB203D26EFD32E006BA70A /* Assets.xcassets */,
 				24DB204226EFD32E006BA70A /* Info.plist */,
@@ -335,6 +338,7 @@
 				24DB204D26F90413006BA70A /* SetupLensesView.swift in Sources */,
 				248AB05A270B369000C379EE /* AppSettingsView.swift in Sources */,
 				241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */,
+				24498C5D29ABBC39000847DC /* AppDebugInit.swift in Sources */,
 				24DB203A26EFD32D006BA70A /* lensetrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,7 +380,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BN7A8CTNT5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = onecupofcoffee.lensetrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -396,7 +400,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BN7A8CTNT5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = onecupofcoffee.lensetrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -417,7 +421,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BN7A8CTNT5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = onecupofcoffee.lensetrackerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -437,7 +441,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BN7A8CTNT5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = onecupofcoffee.lensetrackerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

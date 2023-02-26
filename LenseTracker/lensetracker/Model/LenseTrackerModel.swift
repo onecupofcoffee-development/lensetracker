@@ -77,15 +77,18 @@ struct LenseTrackerModel: Codable {
         if areMyLensesOn {
             self.areMyLensesOn = false
             self.daysUsedCurrentSession = 0
+            self.currentSessionUsageHistory = []
             let nofdays = self.updateUsageHistory(lastDateLensesOn!, offDate)
             
-            if nofdays > 1 {
+            //fix:
+            /*if nofdays > 1 {
                 self.daysUsed += Int(nofdays*Int(self.usageCoeff.rounded(.up)))
             }
             else {
                 self.daysUsed += nofdays
             }
-            
+             */
+            self.daysUsed += Int(nofdays*Int(self.usageCoeff.rounded(.up)))
             self.lastDateLensesOff = offDate
         }
     }
@@ -122,7 +125,8 @@ struct LenseTrackerModel: Codable {
         
         if let onDate = self.lastDateLensesOn {
             let datesRange = self.getDatesRangeArray(onDate, currentDate)
-            let resultArray = Array(Set(datesRange).subtracting(Set(self.currentSessionUsageHistory)))
+            let currentSessionArray = Array(Set(datesRange).subtracting(Set(self.currentSessionUsageHistory)))
+            let resultArray = Array(Set(self.usageHistory).union(Set(currentSessionArray)))
             
             for item in resultArray {
                 currentSessionUsageHistory.append(item)

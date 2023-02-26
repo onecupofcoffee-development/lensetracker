@@ -75,7 +75,7 @@ struct LenseTrackerView: View {
                     .background(Color.blue)
                     .cornerRadius(parameters.buttonRadius)
                 }
-                Text("(с) 2021 Andrey Lesnykh")
+                Text("(с) 2021-2022 Andrey Lesnykh")
                     .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     .font(.footnote)
                     .padding(50)
