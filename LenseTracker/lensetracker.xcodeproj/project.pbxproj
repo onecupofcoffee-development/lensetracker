@@ -10,6 +10,7 @@
 		2403760F282803F600014ACD /* lensetrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403760E282803F600014ACD /* lensetrackerTests.swift */; };
 		241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B934B27010EE30092F9A1 /* LenseImageView.swift */; };
 		24498C5D29ABBC39000847DC /* AppDebugInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24498C5C29ABBC39000847DC /* AppDebugInit.swift */; };
+		24498C6029ABDB12000847DC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24498C5F29ABDB12000847DC /* Date.swift */; };
 		2462B70328285996005BB1E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2462B70128285996005BB1E9 /* Localizable.strings */; };
 		2462B70C282B8E3B005BB1E9 /* lensetrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462B70B282B8E3B005BB1E9 /* lensetrackerUITests.swift */; };
 		2462B70E282B8E3B005BB1E9 /* lensetrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462B70D282B8E3B005BB1E9 /* lensetrackerUITestsLaunchTests.swift */; };
@@ -47,6 +48,7 @@
 		2403760E282803F600014ACD /* lensetrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lensetrackerTests.swift; sourceTree = "<group>"; };
 		241B934B27010EE30092F9A1 /* LenseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenseImageView.swift; sourceTree = "<group>"; };
 		24498C5C29ABBC39000847DC /* AppDebugInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDebugInit.swift; sourceTree = "<group>"; };
+		24498C5F29ABDB12000847DC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		2462B70228285996005BB1E9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2462B70428285CC0005BB1E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2462B709282B8E3B005BB1E9 /* lensetrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lensetrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,14 @@
 				2462B716282FC247005BB1E9 /* lensetrackerModel.xctestplan */,
 			);
 			path = lensetrackerTests;
+			sourceTree = "<group>";
+		};
+		24498C5E29ABDAE6000847DC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				24498C5F29ABDB12000847DC /* Date.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2462B6FD28284C28005BB1E9 /* Model */ = {
@@ -167,6 +177,7 @@
 				2462B6FF28284C3A005BB1E9 /* ViewModel */,
 				24DB203926EFD32D006BA70A /* lensetrackerApp.swift */,
 				24498C5C29ABBC39000847DC /* AppDebugInit.swift */,
+				24498C5E29ABDAE6000847DC /* Extensions */,
 				2462B70128285996005BB1E9 /* Localizable.strings */,
 				24DB203D26EFD32E006BA70A /* Assets.xcassets */,
 				24DB204226EFD32E006BA70A /* Info.plist */,
@@ -246,7 +257,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					2403760B282803F600014ACD = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -332,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DB203C26EFD32D006BA70A /* LenseTrackerView.swift in Sources */,
+				24498C6029ABDB12000847DC /* Date.swift in Sources */,
 				24DB204B26F25DFC006BA70A /* LenseTrackerViewModel.swift in Sources */,
 				24D2790827023D2A00A813EB /* LensesDetails.swift in Sources */,
 				24DB204926F25A1C006BA70A /* LenseTrackerModel.swift in Sources */,
@@ -457,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -518,6 +531,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
