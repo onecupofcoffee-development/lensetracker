@@ -59,7 +59,7 @@ class lensetrackerTests: XCTestCase {
         XCTAssertEqual(myLenses.maxdaysContinuousUse, 7, "CreateNew mutating function did not updated continuous valid period")
         XCTAssertEqual(myLenses.usageCoeff, 2, "Usage coeff should be 2 with 7 continuous daysValid, max daysValid 14")
         XCTAssertTrue(myLenses.continuousUsageIsOn, "Continuous usage should be on if coefficient is > 1")
-        XCTAssertEqual(myLenses.curvRadius, 8.6, "Curve Raduis should be 8.3 on init test")
+        XCTAssertEqual(myLenses.curvRadius, 8.6, "Curve Raduis should be 8.6 on init test")
     }
     
     func testPutOn() throws {
@@ -114,6 +114,7 @@ class lensetrackerTests: XCTestCase {
         XCTAssertTrue(myLenses.daysUsedCurrentSession==0, "Days used current session should be 0 if lenses off")
     }
     
+    //MARK: Todo - refactor test
     func testCurrentSessionUsageContinuous() throws {
         var myLenses = LenseTrackerModel()
         myLenses.createNew(vendor: "myTestVendor", model: "myTestModel", force: -10, valid: 14, continuousValid: 7, curvRadius: 8.3)
@@ -125,7 +126,7 @@ class lensetrackerTests: XCTestCase {
         myLenses.updateCurrentSession(currentDate: addMins(mins: 30, to: today))
         
         XCTAssertTrue(myLenses.daysUsed==0, "Days used is not changing while not off")
-        XCTAssertTrue(myLenses.daysUsedCurrentSession==2, "Days used current session adjusted to 2 within the 1st day")
+        XCTAssertTrue(myLenses.daysUsedCurrentSession==1, "Days used current session adjusted to 1 within the 1st day - not continuous use yet")
         
         myLenses.updateCurrentSession(currentDate: addDays(days: 1, to: today))
         
@@ -148,7 +149,7 @@ class lensetrackerTests: XCTestCase {
         myLenses.updateCurrentSession(currentDate: addDays(days: 5, to: today))
         
         XCTAssertEqual(myLenses.daysUsed, 8, "Days used should be 8 after 4 days, before I take off")
-        XCTAssertEqual(myLenses.daysUsedCurrentSession, 8, "Days used current session adjusted to 2 within the 1st day of use")
+        XCTAssertEqual(myLenses.daysUsedCurrentSession, 9, "Days used current session adjusted to 2 within the 1st day of use")
         
         myLenses.takeOff(offDate: addDays(days: 6, to: today))
         XCTAssertEqual(myLenses.daysUsed, 12, "Days used should be 12 after 6 days")
@@ -180,14 +181,14 @@ class lensetrackerTests: XCTestCase {
             XCTAssertEqual(myLenses.daysLeft, myLenses.validPeriod-myLenses.daysUsed, "Days left should be max days - used days!")
         
         
-        //2 day on, 3 days off
+        //2 day on, 3 day off
             myLenses.putOn(onDate: addDays(days: 1, to: today))
             myLenses.takeOff(offDate: addDays(days: 2, to: today))
             
             XCTAssertEqual(myLenses.areMyLensesOn, false, "Take off test failed: lenses are still on")
             XCTAssertNotNil(myLenses.lastDateLensesOff, "Default last date off was not set properly!")
             XCTAssertEqual(myLenses.lastDateLensesOff, addDays(days: 2, to: today), "Last date is not equal to off date!")
-            XCTAssertEqual(myLenses.daysUsed, 5, "Days used should be 3 for total days 1+(1+1)*2")
+            XCTAssertEqual(myLenses.daysUsed, 6, "Days used should be 6 for total 3 sequential days")
             XCTAssertEqual(myLenses.daysLeft,  myLenses.validPeriod-myLenses.daysUsed, "Days left should be max days - used days!")
         
         //3 day on off
@@ -197,7 +198,7 @@ class lensetrackerTests: XCTestCase {
             XCTAssertEqual(myLenses.areMyLensesOn, false, "Take off test failed: lenses are still on")
             XCTAssertNotNil(myLenses.lastDateLensesOff, "Default last date off was not set properly!")
             XCTAssertEqual(myLenses.lastDateLensesOff, addMins(mins: 45, to: addDays(days: 2, to: today)), "Last date is not equal to off date!")
-            XCTAssertEqual(myLenses.daysUsed, 5, "On day 3, used days should not change on-off")
+            XCTAssertEqual(myLenses.daysUsed, 6, "On day 3, used days should not change on-off")
             XCTAssertEqual(myLenses.daysLeft,  myLenses.validPeriod-myLenses.daysUsed, "Days left should be max days - used days!")
 
         //3 day on (again), 5 day off
@@ -207,7 +208,7 @@ class lensetrackerTests: XCTestCase {
             XCTAssertEqual(myLenses.areMyLensesOn, false, "Take off test failed: lenses are still on")
             XCTAssertNotNil(myLenses.lastDateLensesOff, "Default last date off was not set properly!")
             XCTAssertEqual(myLenses.lastDateLensesOff, addDays(days: 5, to: today), "Last date is not equal to off date!")
-            XCTAssertEqual(myLenses.daysUsed, 9, "On day 5, used days should be 1+(1+1)*2+(1+1)*2")
+            XCTAssertEqual(myLenses.daysUsed, 10, "On day 5, used days should be 5*2")
             XCTAssertEqual(myLenses.daysLeft,  myLenses.validPeriod-myLenses.daysUsed, "Days left should be max days - used days!")
         
         //7 day on, 10 off
@@ -217,7 +218,49 @@ class lensetrackerTests: XCTestCase {
             XCTAssertEqual(myLenses.areMyLensesOn, false, "Take off test failed: lenses are still on")
             XCTAssertNotNil(myLenses.lastDateLensesOff, "Default last date off was not set properly!")
             XCTAssertEqual(myLenses.lastDateLensesOff, addDays(days: 10, to: today), "Last date is not equal to off date!")
-            XCTAssertEqual(myLenses.daysUsed, 17, "On day 10, used days should be 1+2*2+2*2+4*2 day is off lenses")
+            XCTAssertEqual(myLenses.daysUsed, 18, "On day 10, used days should be 18 day is off lenses")
+            XCTAssertEqual(myLenses.daysLeft,  myLenses.validPeriod-myLenses.daysUsed, "Days left should be max days - used days!")
+    }
+    
+    func testUsageCoeffNonConsequent() throws {
+        var myLenses = LenseTrackerModel()
+        myLenses.createNew(vendor: "myTestVendor", model: "myTestModel", force: -10, valid: 14, continuousValid: 7, curvRadius: 8.3)
+        let today = Date()
+        
+        //1 day on/off
+            myLenses.putOn(onDate: today)
+            myLenses.takeOff(offDate: addMins(mins: 30, to: today))
+            
+        
+        
+        //3 day on/off
+            myLenses.putOn(onDate: addDays(days: 2, to: today))
+            myLenses.takeOff(offDate: addMins(mins: 30, to: addDays(days: 2, to: today)))
+            
+            XCTAssertEqual(myLenses.areMyLensesOn, false, "Take off test failed: lenses are still on")
+            XCTAssertNotNil(myLenses.lastDateLensesOff, "Default last date off was not set properly!")
+        XCTAssertEqual(myLenses.lastDateLensesOff, addMins(mins: 30, to: addDays(days: 2, to: today)), "Last date is not equal to off date!")
+            XCTAssertEqual(myLenses.daysUsed, 2, "Days used should be 2 for total 2 non-sequential days")
+            XCTAssertEqual(myLenses.daysLeft,  myLenses.validPeriod-myLenses.daysUsed, "Days left should be max days - used days!")
+        
+        //5 day on, 6 day off
+            myLenses.putOn(onDate: addMins(mins: 30, to: addDays(days: 4, to: today)))
+            myLenses.takeOff(offDate: addMins(mins: 45, to: addDays(days: 5, to: today)))
+            
+            XCTAssertEqual(myLenses.areMyLensesOn, false, "Take off test failed: lenses are still on")
+            XCTAssertNotNil(myLenses.lastDateLensesOff, "Default last date off was not set properly!")
+            XCTAssertEqual(myLenses.lastDateLensesOff, addMins(mins: 45, to: addDays(days: 5, to: today)), "Last date is not equal to off date!")
+            XCTAssertEqual(myLenses.daysUsed, 6, "On day 3, should be 2 + 2*2 days used")
+            XCTAssertEqual(myLenses.daysLeft,  myLenses.validPeriod-myLenses.daysUsed, "Days left should be max days - used days!")
+
+        //8 day on, 10 day off
+            myLenses.putOn(onDate: addMins(mins: 30, to: addDays(days: 7, to: today)))
+            myLenses.takeOff(offDate: addMins(mins: 45, to: addDays(days: 9, to: today)))
+            
+            XCTAssertEqual(myLenses.areMyLensesOn, false, "Take off test failed: lenses are still on")
+            XCTAssertNotNil(myLenses.lastDateLensesOff, "Default last date off was not set properly!")
+            XCTAssertEqual(myLenses.lastDateLensesOff, addMins(mins: 45, to: addDays(days: 9, to: today)), "Last date is not equal to off date!")
+            XCTAssertEqual(myLenses.daysUsed, 12, "On day 3, should be 2 + 2*2 days used")
             XCTAssertEqual(myLenses.daysLeft,  myLenses.validPeriod-myLenses.daysUsed, "Days left should be max days - used days!")
     }
     
