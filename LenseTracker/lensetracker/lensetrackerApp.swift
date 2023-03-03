@@ -12,6 +12,7 @@ import SwiftUI
 struct lensetrackerApp: App {
     
     @StateObject var myViewModel = LenseTrackerViewModel()
+
     
     var body: some Scene {
         WindowGroup {

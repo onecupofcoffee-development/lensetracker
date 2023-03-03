@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		2403760F282803F600014ACD /* lensetrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403760E282803F600014ACD /* lensetrackerTests.swift */; };
 		241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B934B27010EE30092F9A1 /* LenseImageView.swift */; };
-		24498C5D29ABBC39000847DC /* AppDebugInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24498C5C29ABBC39000847DC /* AppDebugInit.swift */; };
 		24498C6029ABDB12000847DC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24498C5F29ABDB12000847DC /* Date.swift */; };
 		2462B70328285996005BB1E9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2462B70128285996005BB1E9 /* Localizable.strings */; };
 		2462B70C282B8E3B005BB1E9 /* lensetrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462B70B282B8E3B005BB1E9 /* lensetrackerUITests.swift */; };
 		2462B70E282B8E3B005BB1E9 /* lensetrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462B70D282B8E3B005BB1E9 /* lensetrackerUITestsLaunchTests.swift */; };
 		2462B715282FBEB8005BB1E9 /* viewmodelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462B714282FBEB8005BB1E9 /* viewmodelTests.swift */; };
 		248AB05A270B369000C379EE /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248AB059270B369000C379EE /* AppSettingsView.swift */; };
+		24CA4C0129ADE95500862D3C /* AppDebugInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24498C5C29ABBC39000847DC /* AppDebugInit.swift */; };
 		24D2790827023D2A00A813EB /* LensesDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2790727023D2A00A813EB /* LensesDetails.swift */; };
 		24DB203A26EFD32D006BA70A /* lensetrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB203926EFD32D006BA70A /* lensetrackerApp.swift */; };
 		24DB203C26EFD32D006BA70A /* LenseTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB203B26EFD32D006BA70A /* LenseTrackerView.swift */; };
@@ -97,6 +97,7 @@
 		2403760D282803F600014ACD /* lensetrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				24498C5C29ABBC39000847DC /* AppDebugInit.swift */,
 				2403760E282803F600014ACD /* lensetrackerTests.swift */,
 				2462B714282FBEB8005BB1E9 /* viewmodelTests.swift */,
 				2462B716282FC247005BB1E9 /* lensetrackerModel.xctestplan */,
@@ -176,7 +177,6 @@
 				2462B70028284C44005BB1E9 /* View */,
 				2462B6FF28284C3A005BB1E9 /* ViewModel */,
 				24DB203926EFD32D006BA70A /* lensetrackerApp.swift */,
-				24498C5C29ABBC39000847DC /* AppDebugInit.swift */,
 				24498C5E29ABDAE6000847DC /* Extensions */,
 				2462B70128285996005BB1E9 /* Localizable.strings */,
 				24DB203D26EFD32E006BA70A /* Assets.xcassets */,
@@ -325,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2462B715282FBEB8005BB1E9 /* viewmodelTests.swift in Sources */,
+				24CA4C0129ADE95500862D3C /* AppDebugInit.swift in Sources */,
 				2403760F282803F600014ACD /* lensetrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +351,6 @@
 				24DB204D26F90413006BA70A /* SetupLensesView.swift in Sources */,
 				248AB05A270B369000C379EE /* AppSettingsView.swift in Sources */,
 				241B934C27010EE30092F9A1 /* LenseImageView.swift in Sources */,
-				24498C5D29ABBC39000847DC /* AppDebugInit.swift in Sources */,
 				24DB203A26EFD32D006BA70A /* lensetrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

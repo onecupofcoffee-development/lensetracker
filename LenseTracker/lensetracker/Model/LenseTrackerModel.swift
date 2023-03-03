@@ -22,8 +22,8 @@ struct LenseTrackerModel: Codable {
         private (set) var curvRadius: Double = 8.3
         
     //usage history
-        private var usageHistory: [String] = [] //default is empty - never used
-        private var currentSessionUsageHistory: [String] = [] //default is empty - never used
+        private var usageHistory: [String] = [] //default is empty - never used; accumulated usage dates since first on till last off
+        private var currentSessionUsageHistory: [String] = [] //default is empty - never used; usageHistory + dates since last on
         
     //options
         private(set) var dailyReminders: Bool = true
@@ -32,8 +32,8 @@ struct LenseTrackerModel: Codable {
         private(set) var expirationReminderTime: Int = 18*60*60 //minutes from 00:00 18-00 by default
     
     //utilization
-        private(set) var daysUsed: Int = 0 //default - not used yet
-        private(set) var daysUsedCurrentSession: Int = 0 //default - not used
+        private(set) var daysUsed: Int = 0 //default - not used yet; considering coefficient
+        private(set) var daysUsedCurrentSession: Int = 0 //default - not used; considering coefficient
         
         var continuousUsageIsOn: Bool {
             if validPeriod/maxdaysContinuousUse > 1 {
@@ -44,7 +44,6 @@ struct LenseTrackerModel: Codable {
             }
         }
     
-        
         var daysLeft: Int {
                 return validPeriod - daysUsed
         }
@@ -58,12 +57,27 @@ struct LenseTrackerModel: Codable {
             else {return false}
         }
     
-
     mutating func setOptions(dailyReminder: Bool, expirationReminder: Bool, dReminder: Int, eReminder: Int) {
         self.dailyReminders = dailyReminder
         self.dailyReminderTime = dReminder
         self.exceedUsageReminder = expirationReminder
         self.expirationReminderTime = eReminder
+    }
+    
+    mutating func createNew(vendor: String, model: String, force: Double, valid: Int, continuousValid: Int, curvRadius: Double) {
+        //re-init lenses
+        self.lenseVendor = vendor
+        self.lenseModel = model
+        self.opticalForce = force
+        self.validPeriod = valid
+        self.areMyLensesOn = false
+        self.lastDateLensesOff = nil
+        self.lastDateLensesOn = nil
+        self.daysUsed = 0
+        self.maxdaysContinuousUse = continuousValid
+        self.usageHistory = []
+        self.currentSessionUsageHistory = []
+        self.curvRadius = curvRadius
     }
     
     mutating func putOn(onDate: Date) {
@@ -73,22 +87,29 @@ struct LenseTrackerModel: Codable {
         }
     }
     
+    //taking lenses off, updating usage history, days used and lenses off date
     mutating func takeOff(offDate: Date) {
         if areMyLensesOn {
             self.areMyLensesOn = false
             self.daysUsedCurrentSession = 0
             self.currentSessionUsageHistory = []
+            
+        //MARK: refactor, removing calculation logic
+            
+            self.updateUsageHistory(lastDateLensesOn!, offDate)
+            self.daysUsed = calculateUsageDays(usageHistory)
+            
+            /*
             let nofdays = self.updateUsageHistory(lastDateLensesOn!, offDate)
             
-            //fix:
-            /*if nofdays > 1 {
+            if nofdays > 1 {
                 self.daysUsed += Int(nofdays*Int(self.usageCoeff.rounded(.up)))
             }
             else {
                 self.daysUsed += nofdays
             }
              */
-            self.daysUsed += Int(nofdays*Int(self.usageCoeff.rounded(.up)))
+            
             self.lastDateLensesOff = offDate
         }
     }
@@ -109,7 +130,68 @@ struct LenseTrackerModel: Codable {
         return result
     }
     
-    private mutating func updateUsageHistory(_ startDate: Date, _ endDate: Date) -> Int {
+    //calculation logic for daysUsed/daysUsedCurrentSession
+    
+    private func calculateUsageDays(_ arr: [String]) -> Int {
+        
+        var nOfDays: Int = 0
+        var a = arr.sorted()
+        
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        
+        var NSDateArray = [Date]()
+        var consBuffer = [String]()
+        var consCombinedBuffer = [String]()
+        var resultArrayConsequent = [[String]]()
+        //var resultArrayNonConsequent = [String]()
+        
+            for item in a {
+                NSDateArray.append(dateFormatter.date(from: item)!)
+            }
+            
+            let referenceDate = calendar.startOfDay(for: NSDateArray.first!)
+
+            let dayDiffs = NSDateArray.map { (date) -> Int in
+                calendar.dateComponents([.day], from: referenceDate, to: date).day!
+            }
+
+            for (prev, current) in zip(dayDiffs, dayDiffs.dropFirst()) {
+                if current == prev + 1 {
+                    // Numbers are consecutive, increase consequtive counter
+                    let i = dayDiffs.firstIndex(of: prev)!
+                    consBuffer.append(a[i])
+                    consBuffer.append(a[i+1])
+                    if dayDiffs.firstIndex(of: current)! == dayDiffs.count-1 {
+                         let uniqueOrdered = Array(NSOrderedSet(array: consBuffer)) as! [String]
+                        resultArrayConsequent.append(uniqueOrdered)
+                        consBuffer = []
+                    }
+                }
+                else {
+                    let uniqueOrdered = Array(NSOrderedSet(array: consBuffer)) as! [String]
+                    resultArrayConsequent.append(uniqueOrdered)
+                    consBuffer = []
+                }
+            }
+
+        for item in resultArrayConsequent {
+            for subitem in item {
+                consCombinedBuffer.append(subitem)
+            }
+            nOfDays += Int(item.count*Int(self.usageCoeff.rounded(.up)))
+        }
+
+        let nonConsequent = Array(Set(a).subtracting(consCombinedBuffer))
+
+        nOfDays += nonConsequent.count
+            
+    return nOfDays
+    }
+    
+    //updating usage history array with current data
+    private mutating func updateUsageHistory(_ startDate: Date, _ endDate: Date) {// -> Int {
         
         let datesRange = self.getDatesRangeArray(startDate, endDate)
         let resultArray = Array(Set(datesRange).subtracting(Set(self.usageHistory)))
@@ -118,40 +200,41 @@ struct LenseTrackerModel: Codable {
             usageHistory.append(item)
         }
         
-        return resultArray.count //number of days added
+        //MARK: refactor, removing calculation logic
+        //return resultArray.count //number of days added
     }
     
+    //updating current session usage history with current data
     mutating func updateCurrentSession(currentDate: Date) {
         
         if let onDate = self.lastDateLensesOn {
-            let datesRange = self.getDatesRangeArray(onDate, currentDate)
-            let currentSessionArray = Array(Set(datesRange).subtracting(Set(self.currentSessionUsageHistory)))
-            let resultArray = Array(Set(self.usageHistory).union(Set(currentSessionArray)))
-            
-            for item in resultArray {
-                currentSessionUsageHistory.append(item)
+            if self.areMyLensesOn {
+                let datesRange = self.getDatesRangeArray(onDate, currentDate)
+                let currentSessionArray = Array(Set(datesRange).subtracting(Set(self.currentSessionUsageHistory)))
+                let resultArray = Array(Set(self.usageHistory).union(Set(currentSessionArray)))
+                
+                for item in resultArray {
+                    currentSessionUsageHistory.append(item)
+                }
+                
+                //MARK: refactor, removing calculation logic
+                
+                self.daysUsedCurrentSession = calculateUsageDays(currentSessionUsageHistory)
+                
+                /*
+                let nOfDays = Array(Set(currentSessionUsageHistory).subtracting(Set(self.usageHistory))).count
+                
+                if nOfDays > 1
+                {
+                    self.daysUsedCurrentSession = Int(currentSessionUsageHistory.count*Int(self.usageCoeff.rounded(.up))) //considering usage coeff, > 1 days on
+                }
+                else {
+                    self.daysUsedCurrentSession = currentSessionUsageHistory.count
+                }
+                 */
             }
-            
-            self.daysUsedCurrentSession = Int(currentSessionUsageHistory.count*Int(self.usageCoeff.rounded(.up)))
         }
     }
-    
-    mutating func createNew(vendor: String, model: String, force: Double, valid: Int, continuousValid: Int, curvRadius: Double) {
-        //re-init lenses
-        self.lenseVendor = vendor
-        self.lenseModel = model
-        self.opticalForce = force
-        self.validPeriod = valid
-        self.areMyLensesOn = false
-        self.lastDateLensesOff = nil
-        self.lastDateLensesOn = nil
-        self.daysUsed = 0
-        self.maxdaysContinuousUse = continuousValid
-        self.usageHistory = []
-        self.currentSessionUsageHistory = []
-        self.curvRadius = curvRadius
-    }
-    
 }
 
 

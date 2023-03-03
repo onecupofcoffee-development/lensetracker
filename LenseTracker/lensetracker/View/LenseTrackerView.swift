@@ -21,6 +21,7 @@ struct LenseTrackerView: View {
                                 myViewModel.takeLensesOff()
                             }
                             .accessibilityIdentifier("LenseImageOn")
+                            .padding(15)
                     }
                     else {
                         lenseImage(ison: false, limit: Double(myViewModel.myModel.validPeriod), utilization: Double(myViewModel.myModel.daysUsed), currentSessionUtilization: Double(myViewModel.myModel.daysUsedCurrentSession))
@@ -28,6 +29,7 @@ struct LenseTrackerView: View {
                                 myViewModel.PutLensesOn()
                             }
                             .accessibilityIdentifier("LenseImageOff")
+                            .padding(15)
                             
                     }
                     Spacer()
